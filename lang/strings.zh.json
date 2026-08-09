@@ -1,0 +1,37 @@
+{
+  "lang": "zh",
+  "dir": "ltr",
+  "nav": { "home": "首页", "about": "关于", "contact": "反馈", "reset": "重新体验" },
+  "home": {
+    "eyebrow": "Practice Plan",
+    "title": "从命令到界面，构建完整实践生态",
+    "desc": "Practice Plan 是一套以用户驱动、多语言、开源为核心的开发实践框架，串联 PPC 命令系统、连接器与桌面工具，让每一次交互都成为可感知的体验。",
+    "cta": "进入大气层",
+    "starsLabel": "可交互星星"
+  },
+  "about": {
+    "cta": "深入地心",
+    "card1": { "title": "用户驱动发展", "sub": "用户驱动", "desc": "每一次演进都源自真实使用场景与社区反馈。需求驱动功能，体验定义优先级，让产品在真实实践中生长。" },
+    "card2": { "title": "多语言支持", "sub": "多语言", "desc": "原生支持中文、English、Français、Русский、العربية，自动检测系统语言并实时切换界面与 RTL 布局。" },
+    "card3": { "title": "开源", "sub": "开源生态", "desc": "代码开放、协议清晰，欢迎贡献。从 PPC 到 TOP_APP，构建可审查、可扩展的实践生态。" }
+  },
+  "contact": {
+    "eyebrow": "反馈 · 联系",
+    "title": "反馈 / 联系我们",
+    "sub": "有想法？让它流淌出来。",
+    "cta": "回到星空",
+    "emailPrefix": "或致信",
+    "form": {
+      "name": "称呼",
+      "email": "邮箱",
+      "message": "反馈内容",
+      "namePh": "你的名字",
+      "emailPh": "you@example.com",
+      "msgPh": "说点什么……",
+      "submit": "发送反馈",
+      "directmail": "直接邮件",
+      "subjectPrefix": "[Practice Plan 反馈]"
+    }
+  },
+  "dots": { "home": "首页", "about": "关于", "contact": "反馈" }
+}

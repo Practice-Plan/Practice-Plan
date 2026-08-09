@@ -1,0 +1,37 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "nav": { "home": "Home", "about": "About", "contact": "Feedback", "reset": "Replay" },
+  "home": {
+    "eyebrow": "Practice Plan",
+    "title": "From command to interface — a complete practice ecosystem",
+    "desc": "Practice Plan is a user-driven, multilingual, open-source development framework linking the PPC command system, connectors, and desktop tools — turning every interaction into a perceptible experience.",
+    "cta": "Enter the Atmosphere",
+    "starsLabel": "interactive stars"
+  },
+  "about": {
+    "cta": "Descend Underground",
+    "card1": { "title": "User-Driven Development", "sub": "User-Driven", "desc": "Every evolution stems from real use cases and community feedback. Needs drive features; experience defines priorities — letting the product grow through real practice." },
+    "card2": { "title": "Multilingual Support", "sub": "Multilingual", "desc": "Native support for 中文, English, Français, Русский, العربية — auto-detects system language and switches the interface and RTL layout in real time." },
+    "card3": { "title": "Open Source", "sub": "Open Source", "desc": "Open code, clear license, contributions welcome. From PPC to TOP_APP — building an auditable, extensible practice ecosystem." }
+  },
+  "contact": {
+    "eyebrow": "Feedback · Contact",
+    "title": "Feedback / Contact Us",
+    "sub": "Have a thought? Let it flow.",
+    "cta": "Back to the Stars",
+    "emailPrefix": "or write to",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "namePh": "Your name",
+      "emailPh": "you@example.com",
+      "msgPh": "Say something…",
+      "submit": "Send Feedback",
+      "directmail": "Direct Mail",
+      "subjectPrefix": "[Practice Plan Feedback]"
+    }
+  },
+  "dots": { "home": "Home", "about": "About", "contact": "Contact" }
+}

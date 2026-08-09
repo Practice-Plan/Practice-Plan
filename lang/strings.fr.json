@@ -1,0 +1,37 @@
+{
+  "lang": "fr",
+  "dir": "ltr",
+  "nav": { "home": "Accueil", "about": "À propos", "contact": "Avis", "reset": "Rejouer" },
+  "home": {
+    "eyebrow": "Practice Plan",
+    "title": "De la commande à l'interface — un écosystème de pratique complet",
+    "desc": "Practice Plan est un framework de développement open source, multilingue et piloté par les utilisateurs, reliant le système de commandes PPC, les connecteurs et les outils de bureau — transformant chaque interaction en une expérience perceptible.",
+    "cta": "Entrer dans l'atmosphère",
+    "starsLabel": "étoiles interactives"
+  },
+  "about": {
+    "cta": "Descendre sous terre",
+    "card1": { "title": "Piloté par les utilisateurs", "sub": "User-Driven", "desc": "Chaque évolution découle de cas d'usage réels et de retours communautaires. Les besoins guident les fonctionnalités ; l'expérience définit les priorités — laissant le produit grandir dans la pratique." },
+    "card2": { "title": "Multilingue", "sub": "Multilingue", "desc": "Prise en charge native de 中文, English, Français, Русский, العربية — détection automatique de la langue système et bascule de l'interface et de la mise en page RTL en temps réel." },
+    "card3": { "title": "Open Source", "sub": "Open Source", "desc": "Code ouvert, licence claire, contributions bienvenues. De PPC à TOP_APP — un écosystème de pratique auditable et extensible." }
+  },
+  "contact": {
+    "eyebrow": "Avis · Contact",
+    "title": "Avis / Nous contacter",
+    "sub": "Une idée ? Laissez-la couler.",
+    "cta": "Retour aux étoiles",
+    "emailPrefix": "ou écrivez à",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "namePh": "Votre nom",
+      "emailPh": "vous@exemple.com",
+      "msgPh": "Dites quelque chose…",
+      "submit": "Envoyer l'avis",
+      "directmail": "Courriel direct",
+      "subjectPrefix": "[Avis Practice Plan]"
+    }
+  },
+  "dots": { "home": "Accueil", "about": "À propos", "contact": "Contact" }
+}

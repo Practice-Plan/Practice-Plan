@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Boot blur overlay: blurs the whole interface until i18n text is applied.
+     Blocks all clicks while visible. Removed by JS the instant text
+     replacement completes (or immediately if no translation loads). -->
+<div class="boot-overlay" id="bootOverlay" aria-hidden="true">
+  <div class="boot-hint">Practice Plan</div>
+</div>
+
+<div class="stage" id="stage">
+
+  <!-- ===================== SCENE 1 ===================== -->
+  <section class="scene scene-home" data-scene="1" style="visibility:visible;opacity:1;transform:translateY(0);pointer-events:auto">
+    <canvas id="starfield1"></canvas>
+
+    <div class="earth-horizon" aria-hidden="true">
+      <svg viewBox="0 0 100 60" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <radialGradient id="earthGrad" cx="50%" cy="100%" r="120%">
+            <stop offset="0%" stop-color="#3aa0d8"/>
+            <stop offset="35%" stop-color="#1e6a8e"/>
+            <stop offset="70%" stop-color="#0a2a4a"/>
+            <stop offset="100%" stop-color="#04101f"/>
+          </radialGradient>
+          <radialGradient id="atmoGrad" cx="50%" cy="100%" r="120%">
+            <stop offset="48%" stop-color="rgba(95,210,255,0)"/>
+            <stop offset="55%" stop-color="rgba(95,210,255,.35)"/>
+            <stop offset="62%" stop-color="rgba(95,210,255,.08)"/>
+            <stop offset="75%" stop-color="rgba(95,210,255,0)"/>
+          </radialGradient>
+          <radialGradient id="termGrad" cx="50%" cy="100%" r="120%">
+            <stop offset="40%" stop-color="rgba(255,180,120,0)"/>
+            <stop offset="52%" stop-color="rgba(255,180,120,.28)"/>
+            <stop offset="60%" stop-color="rgba(255,180,120,0)"/>
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="118" r="74" fill="url(#atmoGrad)"/>
+        <circle cx="50" cy="118" r="70" fill="url(#earthGrad)"/>
+        <g fill="#1f5a3a" opacity=".78">
+          <path d="M20 44 q6 -6 14 -4 q5 1 4 7 q-1 5 -8 5 q-8 0 -10 -8 z"/>
+          <path d="M40 38 q8 -3 14 1 q4 3 1 7 q-3 4 -10 3 q-6 -1 -5 -11 z"/>
+          <path d="M58 50 q7 -2 11 2 q3 3 0 6 q-4 4 -9 2 q-4 -2 -2 -10 z"/>
+          <path d="M74 40 q5 -1 7 3 q1 4 -3 5 q-5 1 -4 -8 z"/>
+        </g>
+        <circle cx="50" cy="118" r="70" fill="url(#termGrad)"/>
+        <g fill="#ffd58a" opacity=".5">
+          <circle cx="28" cy="49" r=".4"/><circle cx="33" cy="47" r=".35"/>
+          <circle cx="44" cy="45" r=".4"/><circle cx="50" cy="44" r=".35"/>
+          <circle cx="61" cy="52" r=".4"/><circle cx="66" cy="50" r=".3"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- satellite + trail + wordmark layer (JS-sized) -->
+    <div class="sat-layer">
+      <svg id="satSvg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="trailGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="rgba(255,241,196,0)"/>
+            <stop offset="40%" stop-color="rgba(255,213,138,.5)"/>
+            <stop offset="100%" stop-color="rgba(255,241,196,.95)"/>
+          </linearGradient>
+          <filter id="trailGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6"/>
+          </filter>
+          <filter id="letterGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="satBody" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff1c4"/><stop offset="100%" stop-color="#d9a64a"/>
+          </linearGradient>
+        </defs>
+        <path id="trailGlowPath" d="" fill="none" stroke="url(#trailGrad)" stroke-width="14" stroke-linecap="round" opacity=".5" filter="url(#trailGlow)" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path id="trailCorePath" d="" fill="none" stroke="#fff1c4" stroke-width="2.2" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <g id="lettersG" filter="url(#letterGlow)"></g>
+        <g id="satellite" opacity="0">
+          <g transform="translate(-22 -10)">
+            <rect x="-34" y="2" width="20" height="16" rx="1.5" fill="#1a2a52" stroke="#3a5a8c" stroke-width=".6"/>
+            <line x1="-34" y1="10" x2="-14" y2="10" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="-29" y1="2" x2="-29" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="-24" y1="2" x2="-24" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="-19" y1="2" x2="-19" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <rect x="14" y="2" width="20" height="16" rx="1.5" fill="#1a2a52" stroke="#3a5a8c" stroke-width=".6"/>
+            <line x1="14" y1="10" x2="34" y2="10" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="19" y1="2" x2="19" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="24" y1="2" x2="24" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <line x1="29" y1="2" x2="29" y2="18" stroke="#3a5a8c" stroke-width=".4"/>
+            <rect x="-12" y="0" width="24" height="20" rx="3" fill="url(#satBody)" stroke="#a9762a" stroke-width=".6"/>
+            <rect x="-8" y="4" width="16" height="5" rx="1" fill="#1a2a52"/>
+            <circle cx="0" cy="13" r="2" fill="#fff1c4"/>
+            <line x1="0" y1="0" x2="0" y2="-8" stroke="#d9a64a" stroke-width="1"/>
+            <circle cx="0" cy="-9" r="1.6" fill="#fff1c4"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- interactive stars top-right -->
+    <div class="int-stars" id="intStars" aria-label="interactive stars" data-i18n-aria="home.starsLabel"></div>
+
+    <!-- title + intro -->
+    <div class="home-content">
+      <div class="home-intro" id="homeIntro">
+        <div class="eyebrow" data-i18n="home.eyebrow">Practice Plan</div>
+        <h2 data-i18n="home.title">From command to interface — a complete practice ecosystem</h2>
+        <p data-i18n="home.desc">Practice Plan is a user-driven, multilingual, open-source development framework linking the PPC command system, connectors, and desktop tools — turning every interaction into a perceptible experience.</p>
+      </div>
+    </div>
+
+    <button class="scene-cta" data-next="2"><span data-i18n="home.cta">Enter the Atmosphere</span> <span class="arrow">→</span></button>
+  </section>
+
+  <!-- ===================== SCENE 2 ===================== -->
+  <section class="scene scene-about" data-scene="2">
+    <div class="sun" id="sun"></div>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+
+    <div class="ground-layer" aria-hidden="true">
+      <svg viewBox="0 0 100 42" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3c5a78"/><stop offset="1" stop-color="#2c4660"/></linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f5a44"/><stop offset="1" stop-color="#1f3f2f"/></linearGradient>
+          <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3a2a"/><stop offset="1" stop-color="#0f2418"/></linearGradient>
+        </defs>
+        <path d="M0 20 L14 8 L26 16 L40 6 L54 14 L68 7 L82 13 L100 5 L100 42 L0 42 Z" fill="url(#g1)"/>
+        <path d="M0 28 L10 18 L22 24 L34 16 L48 22 L60 15 L74 21 L88 17 L100 23 L100 42 L0 42 Z" fill="url(#g2)"/>
+        <path d="M0 36 L18 24 L30 30 L42 18 L50 14 L58 20 L70 28 L84 22 L100 30 L100 42 L0 42 Z" fill="url(#g3)"/>
+        <path d="M40 6 L46 11 L48 9 L54 14 L48 14 L42 12 Z" fill="#eaf6ff" opacity=".7"/>
+        <path d="M48 12 L52 16 L50 14 L54 14 Z" fill="#fff" opacity=".5"/>
+      </svg>
+    </div>
+
+    <!-- windmill on the front peak (~x=50%) -->
+    <div class="windmill" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <polygon points="46,100 54,100 52,40 48,40" fill="#e8e2d4" stroke="#9a8f78" stroke-width=".6"/>
+        <rect x="46" y="38" width="8" height="5" rx="1" fill="#c9bea4"/>
+        <circle cx="50" cy="40" r="3.2" fill="#6b6048"/>
+        <g class="blades">
+          <g fill="#f4f0e4" stroke="#9a8f78" stroke-width=".5">
+            <polygon points="50,40 53,8 47,8"/>
+            <polygon points="50,40 82,37 82,43"/>
+            <polygon points="50,40 47,72 53,72"/>
+            <polygon points="50,40 18,43 18,37"/>
+          </g>
+          <circle cx="50" cy="40" r="2.4" fill="#3a3326"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="cards" id="cards">
+      <article class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d2032" stroke-width="2"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+        <h3 data-i18n="about.card1.title">User-Driven Development</h3>
+        <span class="en" data-i18n="about.card1.sub">User-Driven</span>
+        <p data-i18n="about.card1.desc">Every evolution stems from real use cases and community feedback. Needs drive features; experience defines priorities — letting the product grow through real practice.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d2032" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+        <h3 data-i18n="about.card2.title">Multilingual Support</h3>
+        <span class="en" data-i18n="about.card2.sub">Multilingual</span>
+        <p data-i18n="about.card2.desc">Native support for 中文, English, Français, Русский, العربية — auto-detects system language and switches the interface and RTL layout in real time.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d2032" stroke-width="2"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/></svg></div>
+        <h3 data-i18n="about.card3.title">Open Source</h3>
+        <span class="en" data-i18n="about.card3.sub">Open Source</span>
+        <p data-i18n="about.card3.desc">Open code, clear license, contributions welcome. From PPC to TOP_APP — building an auditable, extensible practice ecosystem.</p>
+      </article>
+    </div>
+
+    <button class="scene-cta" data-next="3"><span data-i18n="about.cta">Descend Underground</span> <span class="arrow">↓</span></button>
+  </section>
+
+  <!-- ===================== SCENE 3 ===================== -->
+  <section class="scene scene-contact" data-scene="3">
+    <div class="underground-bg" aria-hidden="true">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="rockG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2e1810"/><stop offset="1" stop-color="#0a0604"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" fill="url(#rockG)"/>
+        <path d="M0 12 Q25 8 50 12 T100 11 L100 18 Q70 22 50 19 T0 20 Z" fill="#3d2418" opacity=".7"/>
+        <path d="M0 34 Q30 30 55 33 T100 32 L100 38 Q60 42 40 39 T0 40 Z" fill="#432619" opacity=".6"/>
+        <path d="M0 62 Q25 58 50 62 T100 60 L100 66 Q70 70 50 67 T0 68 Z" fill="#3d2418" opacity=".6"/>
+        <path d="M0 84 Q30 80 55 84 T100 82 L100 90 Q60 94 40 91 T0 92 Z" fill="#432619" opacity=".55"/>
+        <g stroke="#1a0f08" stroke-width=".5" fill="none" opacity=".8">
+          <path d="M10 20 L14 30 L12 40 L18 50"/>
+          <path d="M82 8 L78 18 L84 28 L80 38"/>
+          <path d="M30 70 L26 80 L32 88"/>
+          <path d="M68 60 L72 70 L66 80"/>
+        </g>
+        <ellipse cx="50" cy="100" rx="60" ry="22" fill="#e8350c" opacity=".22"/>
+        <ellipse cx="50" cy="100" rx="38" ry="14" fill="#ff7a1a" opacity=".28"/>
+      </svg>
+    </div>
+
+    <div class="contact-area">
+      <div class="eyebrow reveal" data-i18n="contact.eyebrow">Feedback · Contact</div>
+      <h2 class="reveal" data-i18n="contact.title">Feedback / Contact Us</h2>
+      <div class="sub reveal" data-i18n="contact.sub">Have a thought? Let it flow.</div>
+
+      <form class="contact-form reveal" id="contactForm">
+        <div class="field">
+          <label for="fb-name" data-i18n="contact.form.name">Name</label>
+          <input id="fb-name" type="text" data-i18n-ph="contact.form.namePh" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="fb-mail" data-i18n="contact.form.email">Email</label>
+          <input id="fb-mail" type="email" data-i18n-ph="contact.form.emailPh" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="fb-msg" data-i18n="contact.form.message">Message</label>
+          <textarea id="fb-msg" rows="4" data-i18n-ph="contact.form.msgPh" placeholder="Say something…" required></textarea>
+        </div>
+
+        <!-- magma flows through this button row -->
+        <div class="btn-row" id="btnRow">
+          <div class="magma-flow" id="magmaFlow">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="magmaGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="rgba(232,53,12,0)"/>
+                  <stop offset="15%" stop-color="#e8350c"/>
+                  <stop offset="45%" stop-color="#ff7a1a"/>
+                  <stop offset="70%" stop-color="#ffcf3a"/>
+                  <stop offset="92%" stop-color="#fff2a8"/>
+                  <stop offset="100%" stop-color="rgba(255,242,168,0)"/>
+                </linearGradient>
+                <filter id="magmaGlow" x="-10%" y="-30%" width="120%" height="160%">
+                  <feGaussianBlur stdDeviation="5"/>
+                </filter>
+              </defs>
+              <path id="magmaChannel" d="M-20 60 Q120 30 250 60 T520 60 L640 60" fill="none" stroke="#1a0a04" stroke-width="34" stroke-linecap="round" opacity=".5"/>
+              <path id="magmaGlowPath" d="M-20 60 Q120 30 250 60 T520 60 L640 60" fill="none" stroke="url(#magmaGrad)" stroke-width="26" stroke-linecap="round" filter="url(#magmaGlow)" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+              <path id="magmaCorePath" d="M-20 60 Q120 30 250 60 T520 60 L640 60" fill="none" stroke="url(#magmaGrad)" stroke-width="9" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+              <circle id="magmaHot" cx="-30" cy="60" r="9" fill="#fff2a8" opacity="0" filter="url(#magmaGlow)"/>
+            </svg>
+          </div>
+          <button type="submit" class="btn primary" data-i18n="contact.form.submit">Send Feedback</button>
+          <a href="mailto:wang.station@hotmail.com" class="btn ghost" data-i18n="contact.form.directmail">Direct Mail</a>
+        </div>
+      </form>
+
+      <div class="contact-email reveal"><span data-i18n="contact.emailPrefix">or write to</span> <a href="mailto:wang.station@hotmail.com">wang.station@hotmail.com</a></div>
+    </div>
+
+    <button class="scene-cta" data-next="1"><span data-i18n="contact.cta">Back to the Stars</span> <span class="arrow">↑</span></button>
+  </section>
+
+</div>
+
+<!-- overlays -->
+<div class="fx-grain"></div>
+<div class="fx-vignette"></div>
+
+<!-- top bar -->
+<header class="topbar">
+  <div class="brand"><span class="dot"></span>Practice Plan</div>
+  <nav class="scene-nav" id="sceneNav">
+    <button data-go="1" class="on" data-i18n="nav.home">Home</button>
+    <button data-go="2" data-i18n="nav.about">About</button>
+    <button data-go="3" data-i18n="nav.contact">Feedback</button>
+  </nav>
+  <button class="reset-btn" id="resetBtn"><span class="reset-ico">↺</span> <span data-i18n="nav.reset">Replay</span></button>
+</header>
+
+<!-- level dots -->
+<div class="level-dots" id="levelDots">
+  <button data-go="1" class="on" data-label="Home" data-i18n-label="dots.home"></button>
+  <button data-go="2" data-label="About" data-i18n-label="dots.about"></button>
+  <button data-go="3" data-label="Contact" data-i18n-label="dots.contact"></button>
+</div>
+
+<script src="js/script.js" defer></script>
+</body>
+</html>
