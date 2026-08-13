@@ -14,6 +14,15 @@ const DEFAULT_LANG = 'en';
 const LANG_STORAGE_KEY = 'practice-plan-lang';
 let currentStrings = null;
 
+function updateLangButtons(activeLang = getPreferredLang()){
+  const chosen = String(activeLang || DEFAULT_LANG).toLowerCase();
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    const isActive = String(btn.dataset.lang || '').toLowerCase() === chosen;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
+}
+
 function detectLang(){
   const list = (navigator.languages && navigator.languages.length)
     ? navigator.languages
@@ -73,12 +82,30 @@ async function initI18n(lang = getPreferredLang()){
     applyStrings(currentStrings);
     document.documentElement.lang = currentStrings.lang || resolvedLang;
     document.documentElement.dir = currentStrings.dir || 'ltr';
+    updateLangButtons(resolvedLang);
     dismissBootBlur();
   }catch(err){
     console.warn('[i18n] Could not load lang/strings.'+resolvedLang+'.json — using built-in English.', err);
     document.documentElement.lang = DEFAULT_LANG;
     document.documentElement.dir = 'ltr';
+    updateLangButtons(DEFAULT_LANG);
     dismissBootBlur();
+  }
+}
+
+async function changeLanguage(lang){
+  const normalized = rememberLang(lang);
+  try{
+    const res = await fetch(`lang/strings.${normalized}.json`, {cache:'no-cache'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    currentStrings = await res.json();
+    applyStrings(currentStrings);
+    document.documentElement.lang = currentStrings.lang || normalized;
+    document.documentElement.dir = currentStrings.dir || 'ltr';
+    updateLangButtons(normalized);
+  }catch(err){
+    console.warn('[i18n] Could not switch to lang/strings.'+normalized+'.json — staying on current screen.', err);
+    updateLangButtons(normalized);
   }
 }
 
@@ -501,6 +528,9 @@ document.querySelectorAll('[data-go]').forEach(b=>{
 });
 document.querySelectorAll('.scene-cta').forEach(b=>{
   b.addEventListener('click',()=>goToScene(+b.dataset.next));
+});
+document.querySelectorAll('.lang-option').forEach(btn => {
+  btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
 });
 
 document.getElementById('resetBtn').addEventListener('click',()=>{

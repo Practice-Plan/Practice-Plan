@@ -271,12 +271,21 @@
 <!-- top bar -->
 <header class="topbar">
   <div class="brand"><span class="dot"></span>Practice Plan</div>
-  <nav class="scene-nav" id="sceneNav">
-    <button data-go="1" class="on" data-i18n="nav.home">Home</button>
-    <button data-go="2" data-i18n="nav.about">About</button>
-    <button data-go="3" data-i18n="nav.contact">Feedback</button>
-  </nav>
-  <button class="reset-btn" id="resetBtn"><span class="reset-ico">↺</span> <span data-i18n="nav.reset">Replay</span></button>
+  <div class="header-actions">
+    <nav class="scene-nav" id="sceneNav">
+      <button data-go="1" class="on" data-i18n="nav.home">Home</button>
+      <button data-go="2" data-i18n="nav.about">About</button>
+      <button data-go="3" data-i18n="nav.contact">Feedback</button>
+    </nav>
+    <div class="lang-switch" id="langSwitch" aria-label="Language switcher">
+      <button class="lang-option active" type="button" data-lang="en" aria-label="English">EN</button>
+      <button class="lang-option" type="button" data-lang="zh" aria-label="中文">中文</button>
+      <button class="lang-option" type="button" data-lang="fr" aria-label="Français">FR</button>
+      <button class="lang-option" type="button" data-lang="ru" aria-label="Русский">RU</button>
+      <button class="lang-option" type="button" data-lang="ar" aria-label="العربية">ع</button>
+    </div>
+    <button class="reset-btn" id="resetBtn"><span class="reset-ico">↺</span> <span data-i18n="nav.reset">Replay</span></button>
+  </div>
 </header>
 
 <!-- level dots -->
