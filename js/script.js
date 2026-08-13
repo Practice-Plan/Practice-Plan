@@ -10,17 +10,43 @@
    i18n
    ------------------------------------------------------------ */
 const SUPPORTED = ['en','zh','fr','ru','ar'];
+const DEFAULT_LANG = 'en';
+const LANG_STORAGE_KEY = 'practice-plan-lang';
 let currentStrings = null;
 
 function detectLang(){
   const list = (navigator.languages && navigator.languages.length)
     ? navigator.languages
-    : [navigator.language || 'en'];
+    : [navigator.language || DEFAULT_LANG];
   for(const l of list){
     const code = String(l||'').toLowerCase().split('-')[0];
     if(SUPPORTED.includes(code)) return code;
   }
-  return 'en'; // default
+  return DEFAULT_LANG;
+}
+
+function getPreferredLang(){
+  try{
+    const saved = localStorage.getItem(LANG_STORAGE_KEY);
+    if(saved && SUPPORTED.includes(String(saved).toLowerCase())){
+      return String(saved).toLowerCase();
+    }
+  }catch(err){
+    // localStorage may be unavailable in some restricted contexts.
+  }
+  return detectLang();
+}
+
+function rememberLang(lang){
+  const normalized = SUPPORTED.includes(String(lang).toLowerCase())
+    ? String(lang).toLowerCase()
+    : DEFAULT_LANG;
+  try{
+    localStorage.setItem(LANG_STORAGE_KEY, normalized);
+  }catch(err){
+    // ignore storage errors; UI still works without persistence
+  }
+  return normalized;
 }
 
 function getPath(obj, path){
@@ -38,20 +64,19 @@ function dismissBootBlur(){
   setTimeout(()=>{ if(ov.parentNode) ov.parentNode.removeChild(ov); }, 700);
 }
 
-async function initI18n(){
-  const lang = detectLang();
+async function initI18n(lang = getPreferredLang()){
+  const resolvedLang = rememberLang(lang);
   try{
-    const res = await fetch(`lang/strings.${lang}.json`, {cache:'no-cache'});
+    const res = await fetch(`lang/strings.${resolvedLang}.json`, {cache:'no-cache'});
     if(!res.ok) throw new Error('HTTP '+res.status);
     currentStrings = await res.json();
     applyStrings(currentStrings);
-    // Text replacement complete → remove the blur immediately.
+    document.documentElement.lang = currentStrings.lang || resolvedLang;
+    document.documentElement.dir = currentStrings.dir || 'ltr';
     dismissBootBlur();
   }catch(err){
-    // No corresponding text content available → remove the blur immediately
-    // and fall back to the built-in English text already in the HTML.
-    console.warn('[i18n] Could not load lang/strings.'+lang+'.json — using built-in English.', err);
-    document.documentElement.lang = 'en';
+    console.warn('[i18n] Could not load lang/strings.'+resolvedLang+'.json — using built-in English.', err);
+    document.documentElement.lang = DEFAULT_LANG;
     document.documentElement.dir = 'ltr';
     dismissBootBlur();
   }
@@ -477,7 +502,46 @@ document.querySelectorAll('[data-go]').forEach(b=>{
 document.querySelectorAll('.scene-cta').forEach(b=>{
   b.addEventListener('click',()=>goToScene(+b.dataset.next));
 });
-document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  const currentLang = getPreferredLang();
+  state.current = 1;
+  state.transitioning = false;
+  state.played = {1:false,2:false,3:false};
+
+  if (satAnim) cancelAnimationFrame(satAnim);
+  if (magmaAnim) cancelAnimationFrame(magmaAnim);
+
+  document.querySelectorAll('.scene').forEach(scene => {
+    scene.style.visibility = 'hidden';
+    scene.style.opacity = '0';
+    scene.style.transform = 'translateY(100%)';
+    scene.style.pointerEvents = 'none';
+  });
+
+  const s1 = sceneEls[1];
+  s1.style.visibility = 'visible';
+  s1.style.opacity = '1';
+  s1.style.transform = 'translateY(0)';
+  s1.style.pointerEvents = 'auto';
+
+  document.querySelectorAll('.scene-cta').forEach(btn => btn.classList.remove('show'));
+  const intro = document.getElementById('homeIntro');
+  if (intro) intro.classList.remove('show');
+  const sun = document.getElementById('sun');
+  if (sun) sun.classList.remove('show');
+  document.querySelectorAll('#cards .card').forEach(c => c.classList.remove('in'));
+  document.querySelectorAll('.scene-contact .reveal').forEach(r => r.classList.remove('in'));
+  const letters = document.querySelectorAll('#lettersG text');
+  letters.forEach(t => t.setAttribute('opacity', '0'));
+  const host = document.getElementById('intStars');
+  if (host) host.innerHTML = '';
+
+  updateNav(1);
+  initI18n(currentLang);
+  initStarfield();
+  setTimeout(playScene1, 400);
+});
 document.getElementById('contactForm').addEventListener('submit', sendFeedback);
 
 // While the boot blur overlay is visible it must swallow EVERY pointer
