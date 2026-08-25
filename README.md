@@ -1,7 +1,3 @@
-# ⚠️ Important: Please run as Administrator on PPC
+# PPC release -->>
 
-- The current installer does not automatically request administrator privileges. Please ensure you manually run the program with administrator rights.
-
-- We will release version 0.0.8 to resolve this issue.
-
-- Note: This is a temporary notice.
+- Please download v0.0.8
