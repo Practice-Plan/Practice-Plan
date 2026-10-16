@@ -1,37 +1,57 @@
-[
 {
-	"require":"installer"
-		"min_version":"0.0.1"
-	{
-		"body":"lastest"
-			"version":"lastest",
-			"number":1
-	},
-	{
-		"body":"versionlist"
-		
-			"releaselist":1
-			{
-				"number":1
-					"version":0.1.0,
-					"Change":"",
-					"size":""
-			}
-			
-	}
-},
-{
-	{
-		"number":1
-		{
-			"version":0.1.0,
-			"type":"stable",
-			"URL":"",
-			"require"
-				"system":"winows10/11",
-				"size":"",
-				"x":"x86/x64",
-			"attention":""
-		}
-	}
-]
+  "schema": 1,
+  "updated": "2026-10-16T22:35:00Z",
+  "installer": {
+    "require_min_version": "0.0.1",
+    "system": "windows 10/11",
+    "arch": "x86/x64",
+    "note": "-install only supports Portable.zip ,MSI needs to be installed manually. -Portable.zip is a portable version, no installation required, just unzip and run."
+  },
+  "latest": {
+    "version": "0.1.0",
+    "number": 5,
+    "type": "stable"
+  },
+  "stable": {
+    "version": "0.1.0",
+    "released": "2026-10-01",
+    "attention": "v0.1.0 needs to be deployed with the same architecture ppc_ui.dll",
+    "require": {
+      "system": "windows 10/11",
+      "arch": "x86/x64"
+    },
+    "downloads": {
+      "x64": {
+        "zip": {
+          "url": "https://github.com/Practice-Plan/Practice-Plan/releases/download/PPC-V0.1.0/ppc_v0.1.0_win64_Portable.zip",
+          "size": 688634,
+          "sha256": "bef60378927a6ad2cd52da5fc7de838f717618c169757bc594ee14ca878e4ee5"
+        },
+        "msi": {
+          "url": "https://github.com/Practice-Plan/Practice-Plan/releases/download/PPC-V0.1.0/ppc_v0.1.0_win64_Setup.msi",
+          "size": 6172672,
+          "sha256": null
+        }
+      },
+      "x86": {
+        "zip": {
+          "url": "https://github.com/Practice-Plan/Practice-Plan/releases/download/PPC-V0.1.0/ppc_v0.1.0_win32_Portable.zip",
+          "size": 638542,
+          "sha256": "932653687c96ce6e6e8439ec85a1e6bb4a4e7c7e1959e289d9ce0d1463ce6348"
+        },
+        "msi": {
+          "url": "https://github.com/Practice-Plan/Practice-Plan/releases/download/PPC-V0.1.0/ppc_v0.1.0_win32_Setup.msi",
+          "size": 5137920,
+          "sha256": null
+        }
+      }
+    }
+  },
+  "versionlist": [
+    { "number": 1, "version": "0.0.6", "type": "legacy",  "released": "2026-08-09", "change": "First public release" },
+    { "number": 2, "version": "0.0.7", "type": "legacy",  "released": "2026-08-11", "change": "Fixes and polish" },
+    { "number": 3, "version": "0.0.8", "type": "legacy",  "released": "2026-08-24", "change": "Auth relaxation, UAC elevation, WINDOW popups, new commands" },
+    { "number": 4, "version": "0.0.9", "type": "legacy",  "released": "2026-09-04", "change": "Tray mode, 32/64 mutual exclusion, thread-safe core" },
+    { "number": 5, "version": "0.1.0", "type": "stable",  "released": "2026-10-01", "change": "lib.rs refactor, ppc_ui.dll, CLI overhaul, per-session logs" }
+  ]
+}
