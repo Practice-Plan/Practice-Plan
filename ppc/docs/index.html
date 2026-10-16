@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PPC documentation: installation, quick start, command-line options, TCP protocol, integration, logs, and diagnostics." data-description-i18n="dt-lead">
+<title>PPC — Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Noto+Sans+SC:wght@400;700&amp;family=Noto+Sans+Arabic:wght@400;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" href="../assets/ppc.ico" type="image/x-icon">
+<meta property="og:title" content="PPC — Documentation">
+<meta property="og:description" content="PPC documentation: installation, quick start, command-line options, TCP protocol, integration, logs, and diagnostics.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://practice-plan.wangstation.dpdns.org/common/ppc/docs/index.html"><meta property="og:url" content="https://practice-plan.wangstation.dpdns.org/common/ppc/docs/index.html"><meta property="og:locale" content="en_US"></head>
+<body>
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" stroke="#ffb454" stroke-width="1.5" fill="rgba(255,180,84,0.12)"></polygon><polygon points="12,7 16.5,9.5 16.5,14.5 12,17 7.5,14.5 7.5,9.5" fill="#4dd0e1"></polygon></svg>
+      PPC
+    </a>
+    <div class="navlinks">
+      <a href="../index.html#features" data-i18n="nav-features">Features</a>
+      <a href="../index.html#download" data-i18n="nav-download">Download</a>
+      <a href="#" class="on" data-i18n="nav-docs">Docs</a>
+      <a href="../support/index.html" data-i18n="nav-sup">Support</a>
+    </div>
+    <div class="langbar" role="group" aria-label="Language">
+      <button class="lg" type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+      <button class="lg" type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">简体中文</button>
+      <button class="lg" type="button" data-lang="fr" lang="fr" aria-pressed="false">Français</button>
+      <button class="lg" type="button" data-lang="ru" lang="ru" aria-pressed="false">Русский</button>
+      <button class="lg" type="button" data-lang="ar" lang="ar" aria-pressed="false">العربية</button>
+    </div>
+  </div>
+</nav>
+
+<header class="phero">
+  <div class="wrap">
+    <h1 data-i18n="dt-title">Documentation</h1>
+    <p class="lead sub" data-i18n="dt-lead">Everything you need to run and integrate with PPC v0.1.0 — from first launch to the full command set.</p>
+  </div>
+</header>
+
+<div class="wrap docbody">
+  <aside class="toc" aria-label="Contents">
+    <div class="t" data-i18n="toc-on">On this page</div>
+    <a href="#quickstart" class="on" data-i18n="qs-t">Quick start</a>
+    <a href="#install" data-i18n="in-t">Installation</a>
+    <a href="#modes" data-i18n="md-t">Modes &amp; tray</a>
+    <a href="#cli" data-i18n="cli-t">CLI reference</a>
+    <a href="#commands" data-i18n="cmd-t">TCP commands</a>
+    <a href="#integration" data-i18n="it-t">App integration</a>
+    <a href="#logs" data-i18n="lg-t">Logs &amp; diagnostics</a>
+    <a href="#env" data-i18n="ev-t">Env &amp; paths</a>
+  </aside>
+
+  <main class="doc">
+    <h3 id="quickstart"><span class="anchor">01</span><span data-i18n="qs-t">Quick start</span></h3>
+    <p class="dlead" data-i18n="qs-lead">From download to a running, verified server in five minutes.</p>
+
+    <h4 data-i18n="qs-install">1 · Install</h4>
+    <p data-i18n="qs-i1">Download v0.1.0 from the <a href="../index.html#download">release section</a>. Pick win64 for 64-bit Windows, win32 for 32-bit.</p>
+    <p data-i18n="qs-i2">Portable: unzip and run. MSI: run the installer and follow the wizard.</p>
+    <p data-i18n="qs-i3">Keep <code>ppc_ui.dll</code> next to the exe — a 32-bit exe needs the 32-bit DLL.</p>
+
+    <h4 data-i18n="qs-launch">2 · First launch</h4>
+    <p data-i18n="qs-l1">Double-click the exe, accept the UAC prompt, and PPC settles into the system tray. Add <code>-t</code> to see the console instead.</p>
+
+    <h4 data-i18n="qs-verify">3 · Verify</h4>
+    <p data-i18n="qs-v1">Three commands confirm the server is alive and healthy:</p>
+    <div class="term"><div class="dots">● ● ●</div>ppc PPCVERSION<span class="c"> → PPC Version: 0.1.0</span><br>ppc PING<span class="c"> → PONG</span><br>ppc -healthy<span class="c"> → OK</span></div>
+
+    <h4 data-i18n="qs-stop">4 · Stop</h4>
+    <p data-i18n="qs-s1"><code>ppc -stop</code> shuts down gracefully, or use Tray → Exit. Closing the console window never kills the background instance.</p>
+
+    <h3 id="install"><span class="anchor">02</span><span data-i18n="in-t">Installation</span></h3>
+    <p class="dlead" data-i18n="in-lead">Two distribution formats, one requirement.</p>
+    <h4 data-i18n="in-req">Requirements</h4>
+    <p data-i18n="in-r1">Windows x64 or x86. No runtime dependencies — PPC compiles to a self-contained native binary.</p>
+    <h4 data-i18n="in-dir">Directory layout</h4>
+    <div class="term"><div class="dots">● ● ●</div>&lt;ppc&gt;/<br>├── ppc.exe<span class="c">            # or ppc32.exe (x86)</span><br>├── ppc_ui.dll<span class="c">         # C++ Win32 UI (must match exe arch)</span><br>├── dll_default/<br>│&nbsp;&nbsp;&nbsp;└── dll_info.json<br>└── logs/<span class="c">               # created on first run, one file per session</span></div>
+    <div class="callout"><span class="ic">!</span><span data-i18n="in-d1"><b>Arch pairing:</b> a 32-bit exe cannot load a 64-bit DLL. When in doubt, use the matching release bundle — it ships the correct pair.</span></div>
+    <p data-i18n="in-por"><b>Portable (zip)</b> — unzip anywhere, run directly. Ideal for USB tools and locked-down machines.</p>
+    <p data-i18n="in-msi"><b>Setup (msi)</b> — standard Windows installer with Start-menu integration. Best for long-term installs.</p>
+
+    <h3 id="modes"><span class="anchor">03</span><span data-i18n="md-t">Modes &amp; tray</span></h3>
+    <p class="dlead" data-i18n="md-lead">One binary, two faces — silent by default.</p>
+    <p data-i18n="md-1"><b>Tray mode (default):</b> after launch, PPC hides in the system tray. Right-click for menu: Open, Log Viewer, Exit.</p>
+    <p data-i18n="md-2"><b>Terminal mode:</b> <code>ppc -t</code> keeps a live console with session logs.</p>
+    <p data-i18n="md-3"><b>Single instance:</b> <code>ppc</code> and <code>ppc32</code> share port 9527 and are mutually exclusive — only one PPC ever runs.</p>
+    <p data-i18n="md-4"><b>Terminal-proof:</b> a global <code>SetConsoleCtrlHandler</code> keeps the background instance alive when you close the console.</p>
+
+    <h3 id="cli"><span class="anchor">04</span><span data-i18n="cli-t">CLI reference</span></h3>
+    <p class="dlead" data-i18n="cli-lead">Run these from PowerShell or cmd. Every CLI command is forwarded to the running instance.</p>
+    <table class="tbl">
+      <thead><tr><th data-i18n="h-flag">Flag</th><th data-i18n="h-desc">Description</th></tr></thead>
+      <tbody>
+        <tr><td class="code">ppc</td><td data-i18n="f-def">Start the server (tray mode)</td></tr>
+        <tr><td class="code">-t</td><td data-i18n="f-t">Terminal mode — keep a console</td></tr>
+        <tr><td class="code">-stop</td><td data-i18n="f-stop">Graceful shutdown</td></tr>
+        <tr><td class="code">-healthy</td><td data-i18n="f-healthy">Health check (PING)</td></tr>
+        <tr><td class="code">-log N</td><td data-i18n="f-log">Print last N log lines</td></tr>
+        <tr><td class="code">-w -i|-e|-warn|-custom</td><td data-i18n="f-w">Popup window; add -s:WxH for size</td></tr>
+        <tr><td class="code">-f</td><td data-i18n="f-f">Force flag (stripped before forwarding)</td></tr>
+        <tr><td class="code">-elevate</td><td data-i18n="f-el">Request UAC elevation</td></tr>
+        <tr><td class="code">-no-elevate</td><td data-i18n="f-noel">Skip elevation prompt</td></tr>
+        <tr><td class="code">--logviewer</td><td data-i18n="f-lv">Open the real-time log viewer</td></tr>
+        <tr><td class="code">-help</td><td data-i18n="f-help">Print help</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="commands"><span class="anchor">05</span><span data-i18n="cmd-t">TCP command reference</span></h3>
+    <p class="dlead" data-i18n="cmd-lead">Send newline-terminated ASCII commands to 127.0.0.1:9527. All commands work without AUTH since v0.0.8.</p>
+    <table class="tbl">
+      <thead><tr><th data-i18n="h-c">Command</th><th data-i18n="h-a">Alias</th><th data-i18n="h-d">Description</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3" data-i18n="grp-sys">System</td></tr>
+        <tr><td class="code">VERSION</td><td class="code">VER</td><td data-i18n="c-ver">System version info (TYPE/VERSION/KERNEL/ALL)</td></tr>
+        <tr><td class="code">PPCVERSION</td><td class="code">PVER</td><td data-i18n="c-pver">PPC version</td></tr>
+        <tr><td class="code">STATUS</td><td class="code">—</td><td data-i18n="c-status">Health status summary</td></tr>
+        <tr><td class="code">ECHO</td><td class="code">—</td><td data-i18n="c-echo">Connectivity check</td></tr>
+        <tr><td class="code">HELP</td><td class="code">—</td><td data-i18n="c-help">List available commands</td></tr>
+        <tr class="grp"><td colspan="3" data-i18n="grp-dll">DLL</td></tr>
+        <tr><td class="code">DLLLIST</td><td class="code">—</td><td data-i18n="c-dlllist">List known DLLs</td></tr>
+        <tr><td class="code">DLLVERSION</td><td class="code">—</td><td data-i18n="c-dllver">DLL version lookup</td></tr>
+        <tr><td class="code">DLLPATH</td><td class="code">—</td><td data-i18n="c-dllpath">DLL path lookup</td></tr>
+        <tr><td class="code">DLLINFO</td><td class="code">—</td><td data-i18n="c-dllinfo">Full DLL info (JSON)</td></tr>
+        <tr class="grp"><td colspan="3" data-i18n="grp-app">Applications</td></tr>
+        <tr><td class="code">REGISTER_APP</td><td class="code">—</td><td data-i18n="c-reg">Register app (signature checked)</td></tr>
+        <tr><td class="code">UPDATE_APP</td><td class="code">—</td><td data-i18n="c-upd">Update registered info</td></tr>
+        <tr><td class="code">APPS</td><td class="code">—</td><td data-i18n="c-apps">List registered apps</td></tr>
+        <tr><td class="code">APPLOG</td><td class="code">—</td><td data-i18n="c-applog">Per-app log (needs AUTH identity)</td></tr>
+        <tr><td class="code">AUTH</td><td class="code">—</td><td data-i18n="c-auth">Optional identity for logging</td></tr>
+        <tr class="grp"><td colspan="3" data-i18n="grp-uil">UI &amp; logs</td></tr>
+        <tr><td class="code">LOG</td><td class="code">—</td><td data-i18n="c-log">Read session log (N lines)</td></tr>
+        <tr><td class="code">WINDOW</td><td class="code">—</td><td data-i18n="c-window">Popup windows (INFO/ERROR/WARNING/CUSTOM)</td></tr>
+      </tbody>
+    </table>
+    <div class="callout cy"><span class="ic">i</span><span data-i18n="cmd-auth-note">Unknown commands answer <code>UNKNOWN_COMMAND</code>. The full table is embedded in the binary at compile time.</span></div>
+
+    <h3 id="integration"><span class="anchor">06</span><span data-i18n="it-t">App integration</span></h3>
+    <p class="dlead" data-i18n="it-lead">Register your app once, then talk to the core.</p>
+    <h4 data-i18n="it-s1">1 · Connect</h4>
+    <p data-i18n="it-d1">Open a TCP socket to <code>127.0.0.1:9527</code>.</p>
+    <h4 data-i18n="it-s2">2 · Register</h4>
+    <p data-i18n="it-d2">Send your identity in one line, pipe-separated:</p>
+    <div class="term"><div class="dots">● ● ●</div>REGISTER_APP<br>myapp|1.0.0|C:/Program Files/myapp.exe<span class="c">   # app_id|version|exe_path</span></div>
+    <h4 data-i18n="it-s3">3 · Confirm init.json</h4>
+    <p data-i18n="it-d3">On success PPC writes <code>init.json</code> next to itself. If versions mismatch later, delete it and re-register via <code>-update</code>.</p>
+    <div class="term"><div class="dots">● ● ●</div>{"ppc":"true","version":"1.0.0","app_id":"myapp"}</div>
+    <h4 data-i18n="it-s4">4 · Talk</h4>
+    <p data-i18n="it-d4">Send any command, read the response, close at will. Minimal Rust client:</p>
+    <div class="term"><div class="dots">● ● ●</div>let mut s = TcpStream::connect("127.0.0.1:9527")?;<br>s.write_all(b"VERSION ALL\n")?;<br>let mut buf = [0u8; 2048];<br>let n = s.read(&amp;mut buf)?;<br>println!("{}", String::from_utf8_lossy(&amp;buf[..n]));</div>
+    <div class="callout"><span class="ic">!</span><span data-i18n="it-note">C# apps can skip the plumbing entirely — the open-source APP_TOP client ships a protocol-compatible <code>PpcConnector</code>.</span></div>
+
+    <h3 id="logs"><span class="anchor">07</span><span data-i18n="lg-t">Logs &amp; diagnostics</span></h3>
+    <p class="dlead" data-i18n="lg-lead">Every session writes its own file: logs/ppc-YYYYMMDD-HHMMSS.log.</p>
+    <p data-i18n="lg-v1"><b>Tray → Open</b> — the real-time viewer (200ms poll, 1000-line ring buffer).</p>
+    <p data-i18n="lg-v2"><b>CLI:</b> <code>ppc -log 100</code> prints the last 100 lines.</p>
+    <p data-i18n="lg-v3"><b>TCP:</b> <code>LOG 100</code> returns them programmatically.</p>
+    <p data-i18n="lg-triple"><b>Diagnostic triple:</b> ECHO (connectivity) → STATUS (health) → LOG (what happened).</p>
+
+    <h3 id="env"><span class="anchor">08</span><span data-i18n="ev-t">Env &amp; paths</span></h3>
+    <table class="tbl">
+      <thead><tr><th data-i18n="ev-h">Variable</th><th data-i18n="h-desc">Description</th></tr></thead>
+      <tbody>
+        <tr><td class="code">PPC_PORT</td><td data-i18n="ev-port">Override the default port 9527 (runtime)</td></tr>
+        <tr><td class="code">PPC_BASE_DIR</td><td data-i18n="ev-base">Explicit resource root (runtime)</td></tr>
+        <tr><td class="code">PPC_SIGNATURE_PASSWORD</td><td data-i18n="ev-sig">Signing password, embedded at build time only</td></tr>
+      </tbody>
+    </table>
+    <p data-i18n="ev-prio">Path resolution order: <code>PPC_BASE_DIR</code> → exe directory → working directory.</p>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" stroke="#ffb454" stroke-width="1.5" fill="rgba(255,180,84,0.12)"></polygon><polygon points="12,7 16.5,9.5 16.5,14.5 12,17 7.5,14.5 7.5,9.5" fill="#4dd0e1"></polygon></svg>
+          PPC
+        </div>
+        <p class="fabout" data-i18n="ft-about">Central Processing System for Windows apps. Written in Rust by wang.station.</p>
+      </div>
+      <div><h5 data-i18n="ft-prod">Product</h5><span>PPC v0.1.0</span><span data-i18n="ft-app">APP_TOP client</span></div>
+      <div><h5 data-i18n="ft-doc">Docs</h5><a href="#quickstart" data-i18n="ft-help">Help</a><a href="../support/index.html" data-i18n="ft-sup">Support</a><a href="../support/index.html#codes" data-i18n="ft-err">Error codes</a></div>
+      <div><h5 data-i18n="ft-comm">Community</h5><a href="https://github.com/Practice-Plan/Practice-Plan/releases" target="_blank" rel="noopener">GitHub</a><a href="mailto:wang.station@hotmail.com">wang.station@hotmail.com</a></div>
+      <div><h5 data-i18n="ft-lic">License</h5><span>GPL-3.0</span><span data-i18n="ft-com">Commercial</span></div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 wang.station</span>
+      <span data-i18n="ft-dual">Dual-licensed: GPL-3.0 or Commercial</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.PPC_TITLE = {
+  en:'PPC — Documentation', zh:'PPC — 帮助文档', fr:'PPC — Documentation',
+  ru:'PPC — Документация', ar:'PPC — التوثيق'
+};
+window.PPC_I18N = {
+en:{},
+zh:{
+  'nav-features':'能力','nav-download':'下载','nav-docs':'文档','nav-sup':'支持',
+  'dt-title':'帮助文档','dt-lead':'运行 PPC v0.1.0 并接入集成所需的一切——从首次启动到完整命令集。',
+  'toc-on':'本页内容',
+  'qs-t':'快速开始','qs-lead':'五分钟内从下载到运行、验证完毕的服务端。',
+  'qs-install':'1 · 安装','qs-i1':'从<a href="../index.html#download">下载区</a>获取 v0.1.0。64 位 Windows 选 win64，32 位选 win32。',
+  'qs-i2':'便携版：解压即用。安装版：运行 mi­si 按向导安装。','qs-i3':'保持 ppc_ui.dll 与 exe 同目录——32 位 exe 必须配 32 位 DLL。',
+  'qs-launch':'2 · 首次启动','qs-l1':'双击 exe，确认 UAC，PPC 即静默进入系统托盘。加 -t 可改用控制台。',
+  'qs-verify':'3 · 验证','qs-v1':'三条命令确认服务端存活且健康：',
+  'qs-stop':'4 · 停止','qs-s1':'ppc -stop 优雅关停，或托盘菜单 → 退出。关闭控制台窗口不会杀掉后台实例。',
+  'in-t':'安装','in-lead':'两种发行格式，一条系统要求。',
+  'in-req':'系统要求','in-r1':'Windows x64 或 x86。无运行时依赖——PPC 是自包含的原生二进制。',
+  'in-dir':'目录布局','in-d1':'<b>架构配对：</b>32 位 exe 无法加载 64 位 DLL。拿不准就用对应架构的发布包——自带正确配对。',
+  'in-por':'<b>便携版 (zip)</b>——任意位置解压直接运行，适合 U 盘工具与受限环境。',
+  'in-msi':'<b>安装版 (msi)</b>——标准 Windows 安装器，集成开始菜单，适合长期使用。',
+  'md-t':'模式与托盘','md-lead':'一个二进制，两副面孔——默认静默。',
+  'md-1':'<b>托盘模式（默认）：</b>启动后隐藏到系统托盘。右键菜单：打开、日志查看器、退出。',
+  'md-2':'<b>终端模式：</b>ppc -t 保留实时控制台与会话日志。',
+  'md-3':'<b>单实例：</b>ppc 与 ppc32 共享 9527 端口且互斥——同时只有一个 PPC 在运行。',
+  'md-4':'<b>终端免疫：</b>全局 SetConsoleCtrlHandler 保证关闭控制台后台实例依然存活。',
+  'cli-t':'CLI 参考','cli-lead':'在 PowerShell 或 cmd 中执行。所有 CLI 命令都会转发给运行中的实例。',
+  'h-flag':'参数','h-desc':'说明',
+  'f-def':'启动服务端（托盘模式）','f-t':'终端模式——保留控制台','f-stop':'优雅关停','f-healthy':'健康检查（PING）',
+  'f-log':'输出最近 N 行日志','f-w':'弹窗；加 -s:WxH 指定尺寸','f-f':'强制标志（转发前剥离）','f-el':'请求 UAC 提权',
+  'f-noel':'跳过提权弹窗','f-lv':'打开实时日志查看器','f-help':'打印帮助',
+  'cmd-t':'TCP 命令参考','cmd-lead':'向 127.0.0.1:9527 发送以换行结尾的 ASCII 命令。v0.0.8 起全部命令免 AUTH。',
+  'h-c':'命令','h-a':'别名','h-d':'说明',
+  'grp-sys':'系统','grp-dll':'DLL','grp-app':'应用','grp-uil':'界面与日志',
+  'c-ver':'系统版本信息（TYPE/VERSION/KERNEL/ALL）','c-pver':'PPC 版本','c-status':'健康状态摘要','c-echo':'连通性检查',
+  'c-help':'列出可用命令','c-dlllist':'列出已知 DLL','c-dllver':'DLL 版本查询','c-dllpath':'DLL 路径查询','c-dllinfo':'完整 DLL 信息（JSON）',
+  'c-reg':'注册应用（校验签名）','c-upd':'更新已注册信息','c-apps':'列出已注册应用','c-applog':'应用专属日志（需 AUTH 身份）',
+  'c-auth':'可选身份标识（用于日志）','c-log':'读取会话日志（N 行）','c-window':'弹窗（INFO/ERROR/WARNING/CUSTOM）',
+  'cmd-auth-note':'未知命令返回 UNKNOWN_COMMAND。完整命令表在编译期嵌入二进制。',
+  'it-t':'应用集成','it-lead':'注册一次，然后与核心对话。',
+  'it-s1':'1 · 连接','it-d1':'建立 TCP 连接 127.0.0.1:9527。','it-s2':'2 · 注册','it-d2':'单行发送身份，竖线分隔：',
+  'it-s3':'3 · 确认 init.json','it-d3':'成功后 PPC 会在自身旁写入 init.json。版本不匹配时删除并用 -update 重新注册。',
+  'it-s4':'4 · 通信','it-d4':'发送任意命令、读响应、随时关闭。最小 Rust 客户端：',
+  'it-note':'C# 应用可以跳过这些底层工作——开源 APP_TOP 客户端自带协议兼容的 PpcConnector。',
+  'lg-t':'日志与诊断','lg-lead':'每个会话独立日志文件：logs/ppc-YYYYMMDD-HHMMSS.log。',
+  'lg-v1':'<b>托盘 → 打开</b>——实时查看器（200ms 轮询，1000 行环形缓冲）。',
+  'lg-v2':'<b>CLI：</b>ppc -log 100 输出最近 100 行。','lg-v3':'<b>TCP：</b>LOG 100 程序化读取。',
+  'lg-triple':'<b>诊断三件套：</b>ECHO（连通）→ STATUS（健康）→ LOG（溯源）。',
+  'ev-t':'环境变量与路径','ev-h':'变量','ev-port':'覆盖默认端口 9527（运行时）','ev-base':'显式资源根目录（运行时）',
+  'ev-sig':'签名密码，仅编译期嵌入','ev-prio':'路径解析优先级：PPC_BASE_DIR → exe 目录 → 工作目录。',
+  'ft-about':'面向 Windows 应用的中央处理系统。Rust 实现，作者 wang.station。','ft-prod':'产品','ft-app':'APP_TOP 客户端',
+  'ft-doc':'文档','ft-help':'帮助','ft-sup':'支持','ft-err':'错误码','ft-comm':'社区','ft-lic':'许可','ft-com':'商业授权',
+  'ft-dual':'双许可：GPL-3.0 或商业授权'
+},
+ru:{
+  'nav-features':'Возможности','nav-download':'Скачать','nav-docs':'Документация','nav-sup':'Поддержка',
+  'dt-title':'Документация','dt-lead':'Всё для запуска и интеграции с PPC v0.1.0 — от первого старта до полного списка команд.',
+  'toc-on':'На этой странице',
+  'qs-t':'Быстрый старт','qs-lead':'От загрузки до работающего сервера за пять минут.',
+  'qs-install':'1 · Установка','qs-i1':'Скачайте v0.1.0 из <a href="../index.html#download">раздела загрузки</a>. Для 64-бит — win64, для 32-бит — win32.',
+  'qs-i2':'Portable: распакуйте и запускайте. MSI: установите через мастер.','qs-i3':'ppc_ui.dll держите рядом с exe — 32-бит exe требует 32-бит DLL.',
+  'qs-launch':'2 · Первый запуск','qs-l1':'Двойной клик, подтвердите UAC — PPC уйдёт в трей. С -t появится консоль.',
+  'qs-verify':'3 · Проверка','qs-v1':'Три команды подтверждают, что сервер жив:',
+  'qs-stop':'4 · Остановка','qs-s1':'ppc -stop — корректная остановка, или Трей → Выход. Закрытие консоли не убивает фоновый процесс.',
+  'in-t':'Установка','in-lead':'Два формата дистрибутива, одно требование.',
+  'in-req':'Требования','in-r1':'Windows x64 или x86. Без внешних зависимостей — самодостаточный нативный бинарник.',
+  'in-dir':'Структура каталога','in-d1':'<b>Парность архитектур:</b> 32-бит exe не загрузит 64-бит DLL. Берите парный релизный комплект.',
+  'in-por':'<b>Portable (zip)</b> — распаковать и запускать где угодно.','in-msi':'<b>Setup (msi)</b> — стандартный установщик Windows.',
+  'md-t':'Режимы и трей','md-lead':'Один бинарник, два облика — по умолчанию тихий.',
+  'md-1':'<b>Режим трея (по умолчанию):</b> после запуска прячется в трей. Меню по правому клику.','md-2':'<b>Режим терминала:</b> ppc -t.',
+  'md-3':'<b>Один экземпляр:</b> ppc и ppc32 делят порт 9527 и взаимоисключаются.','md-4':'<b>Устойчивость:</b> закрытие консоли не останавливает фоновый процесс.',
+  'cli-t':'Справочник CLI','cli-lead':'Запускайте в PowerShell или cmd. Любая CLI-команда пересылается работающему экземпляру.',
+  'h-flag':'Флаг','h-desc':'Описание',
+  'f-def':'Запуск сервера (трей)','f-t':'Режим терминала','f-stop':'Корректная остановка','f-healthy':'Проверка здоровья (PING)',
+  'f-log':'Вывести последние N строк','f-w':'Всплывающее окно; -s:WxH для размера','f-f':'Флаг принуждения (срезается до пересылки)','f-el':'Запросить UAC',
+  'f-noel':'Пропустить запрос UAC','f-lv':'Открыть просмотрщик логов','f-help':'Показать справку',
+  'cmd-t':'Справочник TCP-команд','cmd-lead':'Отправляйте ASCII-команды с переводом строки на 127.0.0.1:9527. С v0.0.8 AUTH не требуется.',
+  'h-c':'Команда','h-a':'Псевдоним','h-desc':'Описание','h-d':'Описание',
+  'grp-sys':'Система','grp-dll':'DLL','grp-app':'Приложения','grp-uil':'UI и логи',
+  'c-ver':'Сведения о версии ОС (TYPE/VERSION/KERNEL/ALL)','c-pver':'Версия PPC','c-status':'Сводка состояния','c-echo':'Проверка связи',
+  'c-help':'Список команд','c-dlllist':'Список известных DLL','c-dllver':'Версия DLL','c-dllpath':'Путь к DLL','c-dllinfo':'Полные сведения о DLL (JSON)',
+  'c-reg':'Регистрация приложения (с подписью)','c-upd':'Обновление сведений','c-apps':'Список приложений','c-applog':'Лог приложения (нужен AUTH)',
+  'c-auth':'Необязательная идентификация','c-log':'Чтение лога (N строк)','c-window':'Всплывающие окна (INFO/ERROR/WARNING/CUSTOM)',
+  'cmd-auth-note':'Неизвестные команды отвечают UNKNOWN_COMMAND. Таблица команд вшивается в бинарник при сборке.',
+  'it-t':'Интеграция приложений','it-lead':'Зарегистрируйте приложение — и общайтесь с ядром.',
+  'it-s1':'1 · Подключение','it-d1':'TCP-сокет к 127.0.0.1:9527.','it-s2':'2 · Регистрация','it-d2':'Одна строка через вертикальную черту:',
+  'it-s3':'3 · init.json','it-d3':'При успехе PPC записывает init.json. При несовпадении версий удалите его и перерегистрируйтесь через -update.',
+  'it-s4':'4 · Обмен','it-d4':'Минимальный клиент на Rust:',
+  'it-note':'Для C# готов клиент APP_TOP с совместимым PpcConnector.',
+  'lg-t':'Логи и диагностика','lg-lead':'Каждая сессия пишет свой файл: logs/ppc-YYYYMMDD-HHMMSS.log.',
+  'lg-v1':'<b>Трей → Открыть</b> — просмотрщик в реальном времени.','lg-v2':'<b>CLI:</b> ppc -log 100.','lg-v3':'<b>TCP:</b> LOG 100.',
+  'lg-triple':'<b>Диагностическая тройка:</b> ECHO → STATUS → LOG.',
+  'ev-t':'Переменные и пути','ev-h':'Переменная','ev-port':'Переопределить порт 9527 (рантайм)','ev-base':'Явный корень ресурсов (рантайм)',
+  'ev-sig':'Пароль подписи — только при сборке','ev-prio':'Порядок разрешения: PPC_BASE_DIR → каталог exe → рабочий каталог.',
+  'ft-about':'Центральная система обработки для Windows-приложений. Rust, автор wang.station.','ft-prod':'Продукт','ft-app':'Клиент APP_TOP',
+  'ft-doc':'Документация','ft-help':'Справка','ft-sup':'Поддержка','ft-err':'Коды ошибок','ft-comm':'Сообщество','ft-lic':'Лицензия','ft-com':'Коммерческая',
+  'ft-dual':'Двойная лицензия: GPL-3.0 или коммерческая'
+},
+fr:{
+  'nav-features':'Fonctionnalités','nav-download':'Télécharger','nav-docs':'Documentation','nav-sup':'Assistance',
+  'dt-title':'Documentation','dt-lead':'Tout pour exécuter PPC v0.1.0 et l’intégrer : du premier lancement à l’ensemble des commandes.',
+  'toc-on':'Sur cette page','qs-t':'Démarrage rapide','in-t':'Installation','md-t':'Modes et barre système','cli-t':'Référence CLI','cmd-t':'Commandes TCP','it-t':'Intégration de l’application','lg-t':'Journaux et diagnostic','ev-t':'Environnement et chemins',
+  'qs-lead':'Du téléchargement à un serveur opérationnel et vérifié en cinq minutes.',
+  'qs-install':'1 · Installer','qs-i1':'Téléchargez v0.1.0 depuis la section des versions. Choisissez win64 pour Windows 64 bits, win32 pour 32 bits.',
+  'qs-i2':'Version portable : décompressez et lancez. MSI : exécutez l’installateur et suivez l’assistant.',
+  'qs-i3':'Gardez ppc_ui.dll à côté de l’exécutable ; un exécutable 32 bits nécessite la DLL 32 bits.',
+  'qs-launch':'2 · Premier lancement','qs-l1':'Double-cliquez sur l’exécutable, acceptez la demande UAC : PPC se place dans la barre système. Ajoutez -t pour afficher la console.',
+  'qs-verify':'3 · Vérifier','qs-v1':'Trois commandes confirment que le serveur fonctionne correctement :',
+  'qs-stop':'4 · Arrêter','qs-s1':'ppc -stop arrête proprement le service ; vous pouvez aussi choisir Quitter dans le menu de la barre système. Fermer la console ne termine pas le processus en arrière-plan.',
+  'in-lead':'Deux formats de distribution, une seule exigence.','in-req':'Configuration requise','in-r1':'Windows x64 ou x86. Aucune dépendance d’exécution : PPC est un binaire natif autonome.',
+  'in-dir':'Structure des dossiers','in-d1':'Association des architectures : un exécutable 32 bits ne peut pas charger une DLL 64 bits. En cas de doute, utilisez le paquet de la même architecture.',
+  'in-por':'Portable (zip) — décompressez et lancez où vous voulez. Idéal pour les outils USB et les machines verrouillées.',
+  'in-msi':'Installation (msi) — installateur Windows standard avec intégration au menu Démarrer.',
+  'md-lead':'Un binaire, deux modes : silencieux par défaut.',
+  'md-1':'Mode barre système (par défaut) : PPC se masque après le lancement. Clic droit pour ouvrir le menu, afficher les journaux ou quitter.',
+  'md-2':'Mode terminal : ppc -t conserve une console active avec les journaux de session.',
+  'md-3':'Instance unique : ppc et ppc32 partagent le port 9527 et ne peuvent pas fonctionner ensemble.',
+  'md-4':'Résistant à la fermeture du terminal : SetConsoleCtrlHandler maintient le processus actif après la fermeture de la console.',
+  'cli-lead':'Exécutez ces commandes dans PowerShell ou cmd. Chaque commande CLI est transmise à l’instance en cours.',
+  'h-flag':'Option','h-desc':'Description','h-d':'Description','c-ver':'Informations sur la version du système (TYPE/VERSION/KERNEL/ALL)','f-def':'Démarrer le serveur (barre système)','f-t':'Mode terminal — conserver la console',
+  'f-stop':'Arrêt normal','f-healthy':'Vérification de l’état (PING)','f-log':'Afficher les N dernières lignes',
+  'f-w':'Fenêtre contextuelle ; -s:WxH définit la taille','f-f':'Option forcée (retirée avant transfert)',
+  'f-el':'Demander l’élévation UAC','f-noel':'Ignorer la demande d’élévation','f-lv':'Ouvrir la visionneuse de journaux','f-help':'Afficher l’aide',
+  'cmd-lead':'Envoyez des commandes ASCII terminées par un saut de ligne à 127.0.0.1:9527. Depuis v0.0.8, AUTH n’est pas requis.',
+  'h-c':'Commande','h-a':'Alias','h-desc':'Description','grp-sys':'Système','grp-dll':'DLL','grp-app':'Applications','grp-uil':'Interface et journaux',
+  'c-pver':'Version de PPC','c-status':'Résumé de l’état','c-echo':'Test de connexion','c-help':'Lister les commandes disponibles',
+  'c-dlllist':'Lister les DLL connues','c-dllver':'Version de la DLL','c-dllpath':'Chemin de la DLL','c-dllinfo':'Informations complètes sur la DLL (JSON)',
+  'c-reg':'Enregistrer une application (vérification de signature)','c-upd':'Mettre à jour l’enregistrement','c-apps':'Lister les applications enregistrées',
+  'c-applog':'Journal de l’application (AUTH requis)','c-auth':'Identité facultative pour les journaux',
+  'c-log':'Lire le journal de session (N lignes)','c-window':'Fenêtre (INFO/ERROR/WARNING/CUSTOM)',
+  'cmd-auth-note':'Une commande inconnue renvoie UNKNOWN_COMMAND. La table complète des commandes est intégrée au binaire lors de la compilation.',
+  'it-lead':'Enregistrez l’application une fois, puis échangez avec le cœur.',
+  'it-s1':'1 · Connexion','it-d1':'Ouvrez une connexion TCP vers 127.0.0.1:9527.','it-s2':'2 · Enregistrement','it-d2':'Envoyez une ligne avec l’identité, les champs étant séparés par |.',
+  'it-s3':'3 · Vérifier init.json','it-d3':'Après réussite, PPC écrit init.json à côté de l’application. En cas de version incompatible, supprimez-le et réenregistrez avec -update.',
+  'it-s4':'4 · Échanger','it-d4':'Envoyez une commande, lisez la réponse, puis fermez la connexion. Exemple de client Rust minimal :',
+  'it-note':'Les applications C# peuvent utiliser directement le PpcConnector compatible avec le protocole, fourni par le client APP_TOP.',
+  'lg-lead':'Chaque session possède son fichier : logs/ppc-YYYYMMDD-HHMMSS.log.',
+  'lg-v1':'Barre système → Ouvrir : visionneuse en temps réel avec tampon circulaire.',
+  'lg-v2':'CLI : ppc -log 100 affiche les 100 dernières lignes.','lg-v3':'TCP : LOG 100 lit les journaux par programme.',
+  'lg-triple':'Trois étapes de diagnostic : ECHO → STATUS → LOG.',
+  'ev-h':'Variable','ev-port':'Remplace le port par défaut 9527 (à l’exécution)','ev-base':'Définit explicitement le répertoire des ressources (à l’exécution)',
+  'ev-sig':'Mot de passe de signature, intégré uniquement à la compilation',
+  'ev-prio':'Ordre de résolution : PPC_BASE_DIR → dossier de l’exécutable → dossier de travail.',
+  'ft-about':'Système central de traitement pour les applications Windows. Écrit en Rust par wang.station.',
+  'ft-prod':'Produit','ft-app':'Client APP_TOP','ft-doc':'Documentation','ft-help':'Aide','ft-sup':'Assistance','ft-err':'Codes d’erreur','ft-comm':'Communauté','ft-lic':'Licence','ft-com':'Commercial',
+  'ft-dual':'Double licence : GPL-3.0 ou commerciale'
+},
+ar:{
+  'nav-features':'الميزات','nav-download':'تنزيل','nav-docs':'التوثيق','nav-sup':'الدعم',
+  'dt-title':'التوثيق','dt-lead':'كل ما تحتاجه لتشغيل PPC v0.1.0 ودمجه، من التشغيل الأول إلى مجموعة الأوامر الكاملة.',
+  'toc-on':'في هذه الصفحة','qs-t':'البدء السريع','in-t':'التثبيت','md-t':'الأوضاع وشريط النظام','cli-t':'مرجع CLI','cmd-t':'أوامر TCP','it-t':'تكامل التطبيقات','lg-t':'السجلات والتشخيص','ev-t':'البيئة والمسارات',
+  'qs-lead':'من التنزيل إلى خادم يعمل وتم التحقق منه خلال خمس دقائق.',
+  'qs-install':'١ · التثبيت','qs-i1':'نزّل v0.1.0 من قسم الإصدارات. اختر win64 لنظام Windows ‏64 بت وwin32 لنظام 32 بت.',
+  'qs-i2':'النسخة المحمولة: فك الضغط وشغّل. MSI: شغّل المثبّت واتبع التعليمات.',
+  'qs-i3':'احتفظ بـ ppc_ui.dll بجوار الملف التنفيذي؛ يحتاج ملف 32 بت إلى مكتبة DLL ‏32 بت.',
+  'qs-launch':'٢ · التشغيل الأول','qs-l1':'انقر مرتين على الملف التنفيذي ووافق على طلب UAC؛ سيظهر PPC في شريط النظام. أضف -t لإظهار وحدة التحكم.',
+  'qs-verify':'٣ · التحقق','qs-v1':'تؤكد ثلاثة أوامر أن الخادم يعمل وبحالة سليمة:',
+  'qs-stop':'٤ · الإيقاف','qs-s1':'يوقف ppc -stop الخدمة بأمان، أو اختر خروج من قائمة شريط النظام. لا يؤدي إغلاق نافذة وحدة التحكم إلى إنهاء العملية الخلفية.',
+  'in-lead':'تنسيقان للتوزيع ومتطلب واحد.','in-req':'المتطلبات','in-r1':'Windows ‏x64 أو x86. لا توجد تبعيات وقت التشغيل؛ PPC ملف تنفيذي أصلي مستقل.',
+  'in-dir':'بنية المجلد','in-d1':'توافق البنية: لا يمكن لملف 32 بت تحميل DLL ‏64 بت. استخدم حزمة الإصدار المطابقة للبنية.',
+  'in-por':'Portable (zip) — فك الضغط وشغّل من أي مكان. مناسب لأدوات USB والأجهزة المقيّدة.',
+  'in-msi':'Setup (msi) — مثبّت Windows قياسي مع تكامل قائمة ابدأ.',
+  'md-lead':'ملف ثنائي واحد ووضعان؛ صامت افتراضياً.',
+  'md-1':'وضع شريط النظام (افتراضي): يختفي PPC في شريط النظام بعد التشغيل. انقر بزر الفأرة الأيمن لفتح القائمة أو عارض السجلات أو الخروج.',
+  'md-2':'وضع الطرفية: يبقي ppc -t وحدة التحكم المباشرة وسجلات الجلسة.',
+  'md-3':'نسخة واحدة: يشترك ppc وppc32 في المنفذ 9527 ولا يعملان معاً.',
+  'md-4':'مقاومة إغلاق الطرفية: تُبقي SetConsoleCtrlHandler العملية الخلفية قيد التشغيل عند إغلاق وحدة التحكم.',
+  'cli-lead':'شغّل هذه الأوامر من PowerShell أو cmd. يُمرّر كل أمر CLI إلى النسخة العاملة.',
+  'h-flag':'الخيار','h-desc':'الوصف','h-d':'الوصف','c-ver':'معلومات إصدار النظام (TYPE/VERSION/KERNEL/ALL)','f-def':'بدء الخادم (وضع شريط النظام)','f-t':'وضع الطرفية — إبقاء وحدة التحكم',
+  'f-stop':'إيقاف آمن','f-healthy':'فحص الحالة (PING)','f-log':'عرض آخر N أسطر',
+  'f-w':'نافذة منبثقة؛ يحدد -s:WxH الحجم','f-f':'خيار فرض (يُزال قبل التمرير)',
+  'f-el':'طلب رفع صلاحيات UAC','f-noel':'تجاوز طلب رفع الصلاحيات','f-lv':'فتح عارض السجلات','f-help':'عرض المساعدة',
+  'cmd-lead':'أرسل أوامر ASCII المنتهية بسطر جديد إلى 127.0.0.1:9527. لا يلزم AUTH منذ v0.0.8.',
+  'h-c':'الأمر','h-a':'الاسم البديل','h-desc':'الوصف','grp-sys':'النظام','grp-dll':'DLL','grp-app':'التطبيقات','grp-uil':'الواجهة والسجلات',
+  'c-pver':'إصدار PPC','c-status':'ملخص الحالة','c-echo':'اختبار الاتصال','c-help':'عرض الأوامر المتاحة',
+  'c-dlllist':'عرض مكتبات DLL المعروفة','c-dllver':'إصدار DLL','c-dllpath':'مسار DLL','c-dllinfo':'معلومات DLL كاملة (JSON)',
+  'c-reg':'تسجيل تطبيق (التحقق من التوقيع)','c-upd':'تحديث التسجيل','c-apps':'عرض التطبيقات المسجلة',
+  'c-applog':'سجل التطبيق (يتطلب AUTH)','c-auth':'هوية اختيارية للسجلات',
+  'c-log':'قراءة سجل الجلسة (N أسطر)','c-window':'نافذة (INFO/ERROR/WARNING/CUSTOM)',
+  'cmd-auth-note':'يرجع الأمر غير المعروف UNKNOWN_COMMAND. يُضمّن جدول الأوامر الكامل في الملف الثنائي أثناء البناء.',
+  'it-lead':'سجّل التطبيق مرة واحدة ثم تواصل مع النواة.',
+  'it-s1':'١ · الاتصال','it-d1':'أنشئ اتصال TCP إلى 127.0.0.1:9527.','it-s2':'٢ · التسجيل','it-d2':'أرسل الهوية في سطر واحد مع الفصل بعلامة |.',
+  'it-s3':'٣ · التحقق من init.json','it-d3':'ينشئ PPC ملف init.json بجوار التطبيق عند النجاح. عند اختلاف الإصدار، احذفه وأعد التسجيل باستخدام -update.',
+  'it-s4':'٤ · التواصل','it-d4':'أرسل أمراً واقرأ الرد ثم أغلق الاتصال. مثال لعميل Rust بسيط:',
+  'it-note':'يمكن لتطبيقات C# استخدام PpcConnector المتوافق مع البروتوكول ضمن عميل APP_TOP.',
+  'lg-lead':'لكل جلسة ملف سجل مستقل: logs/ppc-YYYYMMDD-HHMMSS.log.',
+  'lg-v1':'شريط النظام ← فتح: عارض مباشر مع مخزن دائري.',
+  'lg-v2':'CLI: يعرض ppc -log 100 آخر 100 سطر.','lg-v3':'TCP: يقرأ LOG 100 السجلات برمجياً.',
+  'lg-triple':'خطوات التشخيص الثلاث: ECHO ← STATUS ← LOG.',
+  'ev-h':'المتغير','ev-port':'تجاوز المنفذ الافتراضي 9527 (وقت التشغيل)','ev-base':'تحديد جذر الموارد صراحةً (وقت التشغيل)',
+  'ev-sig':'كلمة مرور التوقيع، تُضمّن وقت البناء فقط',
+  'ev-prio':'ترتيب البحث: PPC_BASE_DIR ثم مجلد الملف التنفيذي ثم مجلد العمل.',
+  'ft-about':'نظام معالجة مركزي لتطبيقات Windows، مكتوب بلغة Rust بواسطة wang.station.',
+  'ft-prod':'المنتج','ft-app':'عميل APP_TOP','ft-doc':'التوثيق','ft-help':'مساعدة','ft-sup':'الدعم','ft-err':'رموز الأخطاء','ft-comm':'المجتمع','ft-lic':'الترخيص','ft-com':'تجاري',
+  'ft-dual':'ترخيص مزدوج: GPL-3.0 أو ترخيص تجاري'
+}
+};
+</script>
+<script src="../assets/app.js"></script>
+
+
+</body></html>

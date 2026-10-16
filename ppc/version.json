@@ -1,0 +1,37 @@
+[
+{
+	"require":"installer"
+		"min_version":"0.0.1"
+	{
+		"body":"lastest"
+			"version":"lastest",
+			"number":1
+	},
+	{
+		"body":"versionlist"
+		
+			"releaselist":1
+			{
+				"number":1
+					"version":0.1.0,
+					"Change":"",
+					"size":""
+			}
+			
+	}
+},
+{
+	{
+		"number":1
+		{
+			"version":0.1.0,
+			"type":"stable",
+			"URL":"",
+			"require"
+				"system":"winows10/11",
+				"size":"",
+				"x":"x86/x64",
+			"attention":""
+		}
+	}
+]

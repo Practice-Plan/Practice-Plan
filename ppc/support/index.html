@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PPC support, frequently asked questions, error codes, troubleshooting steps, and contact information." data-description-i18n="st-lead">
+<title>PPC — Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Noto+Sans+SC:wght@400;700&amp;family=Noto+Sans+Arabic:wght@400;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<meta name="theme-color" content="#0a0e14">
+<link rel="icon" href="../assets/ppc.ico" type="image/x-icon">
+<meta property="og:title" content="PPC — Support">
+<meta property="og:description" content="PPC support, frequently asked questions, error codes, troubleshooting steps, and contact information.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://practice-plan.wangstation.dpdns.org/common/ppc/support/index.html"><meta property="og:url" content="https://practice-plan.wangstation.dpdns.org/common/ppc/support/index.html"><meta property="og:locale" content="en_US"></head>
+<body>
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" stroke="#ffb454" stroke-width="1.5" fill="rgba(255,180,84,0.12)"></polygon><polygon points="12,7 16.5,9.5 16.5,14.5 12,17 7.5,14.5 7.5,9.5" fill="#4dd0e1"></polygon></svg>
+      PPC
+    </a>
+    <div class="navlinks">
+      <a href="../index.html#features" data-i18n="nav-features">Features</a>
+      <a href="../index.html#download" data-i18n="nav-download">Download</a>
+      <a href="../docs/index.html" data-i18n="nav-docs">Docs</a>
+      <a href="#" class="on" data-i18n="nav-sup">Support</a>
+    </div>
+    <div class="langbar" role="group" aria-label="Language">
+      <button class="lg" type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+      <button class="lg" type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">简体中文</button>
+      <button class="lg" type="button" data-lang="fr" lang="fr" aria-pressed="false">Français</button>
+      <button class="lg" type="button" data-lang="ru" lang="ru" aria-pressed="false">Русский</button>
+      <button class="lg" type="button" data-lang="ar" lang="ar" aria-pressed="false">العربية</button>
+    </div>
+  </div>
+</nav>
+
+<header class="phero">
+  <div class="wrap">
+    <h1 data-i18n="st-title">Support</h1>
+    <p class="lead sub" data-i18n="st-lead">Solve 90% of issues yourself in minutes — send the rest to us with everything we need.</p>
+  </div>
+</header>
+
+<div class="wrap docbody">
+  <aside class="toc" aria-label="Contents">
+    <div class="t" data-i18n="toc-on">On this page</div>
+    <a href="#contact" class="on" data-i18n="ct-t">Contact &amp; template</a>
+    <a href="#faq" data-i18n="faq-t">FAQ</a>
+    <a href="#codes" data-i18n="err-t">Error codes</a>
+    <a href="#scenarios" data-i18n="sc-t">Troubleshooting</a>
+    <a href="#tree" data-i18n="tr-t">Decision tree</a>
+    <a href="#versions" data-i18n="vp-t">Versions</a>
+    <a href="#license" data-i18n="li-t">License</a>
+  </aside>
+
+  <main class="doc">
+    <h3 id="contact"><span class="anchor">01</span><span data-i18n="ct-t">Contact &amp; template</span></h3>
+    <p class="dlead" data-i18n="ct-lead">One email, everything included — that is a good report.</p>
+    <p data-i18n="ct-mail">Email: <a href="mailto:wang.station@hotmail.com">wang.station@hotmail.com</a></p>
+    <p data-i18n="ct-need">Attach these five things — missing items mean back-and-forth:</p>
+    <div class="report">【Error code】<br>【Command】<br>【VERSION ALL output】<br>【Description】<br>【Steps to reproduce】</div>
+    <button class="copybtn" data-copy=".report" data-label="Copy template" data-ok="✓ Copied" data-i18n="copy-btn">Copy template</button>
+
+    <h3 id="faq"><span class="anchor">02</span><span data-i18n="faq-t">FAQ</span></h3>
+    <div class="faqgrp" data-i18n="fq-g1">Startup</div>
+    <details class="faq"><summary data-i18n="fq1-q">Double-clicking the exe shows no window?</summary><div class="a" data-i18n="fq1-a">That is tray mode — the default. Check the tray area (it may be folded behind ^). Use <code>ppc -t</code> for a console.</div></details>
+    <details class="faq"><summary data-i18n="fq2-q">The UAC prompt appears every time?</summary><div class="a" data-i18n="fq2-a">v0.1.0 requests elevation on launch by design. During debugging use <code>ppc -t</code> or <code>ppc -no-elevate</code>.</div></details>
+    <details class="faq"><summary data-i18n="fq3-q">"Port already in use / another instance running"?</summary><div class="a" data-i18n="fq3-a"><code>ppc</code> and <code>ppc32</code> share port 9527 with mutual exclusion — by design. Run <code>ppc -stop</code>, then start the architecture you want.</div></details>
+    <details class="faq"><summary data-i18n="fq4-q">Does closing the terminal kill PPC?</summary><div class="a" data-i18n="fq4-a">No. A global console-control handler keeps the background instance alive (v0.1.0+).</div></details>
+    <div class="faqgrp" data-i18n="fq-g2">Connection</div>
+    <details class="faq"><summary data-i18n="fq5-q">My app cannot connect to 127.0.0.1:9527 (0x10017)?</summary><div class="a" data-i18n="fq5-a">Confirm PPC is running (tray icon / <code>ppc PING</code>), that the client targets the right port (<code>PPC_PORT</code>), and that you connect via 127.0.0.1 — not localhost aliases with proxies.</div></details>
+    <details class="faq"><summary data-i18n="fq6-q">Commands answer UNKNOWN_COMMAND?</summary><div class="a" data-i18n="fq6-a">Check the spelling, then compare against <code>HELP</code>. Very old PPC versions lack newer commands — upgrade to v0.1.0.</div></details>
+    <div class="faqgrp" data-i18n="fq-g3">UI &amp; DLL</div>
+    <details class="faq"><summary data-i18n="fq7-q">Popups look different from before / 0x10011 or 0x10012?</summary><div class="a" data-i18n="fq7-a">The native UI needs <code>ppc_ui.dll</code> beside the exe, matching its architecture. Missing or mismatched → PPC silently falls back to the built-in Win32 stub. Fix the file pairing and restart.</div></details>
+    <div class="faqgrp" data-i18n="fq-g4">Registration</div>
+    <details class="faq"><summary data-i18n="fq8-q">REGISTER_APP returns 0x10005 (failed)?</summary><div class="a" data-i18n="fq8-a">Check the payload format — <code>app_id|version|exe_path</code> on one line, pipe-separated — and that your signature is valid for the build.</div></details>
+    <details class="faq"><summary data-i18n="fq9-q">Do I still need AUTH?</summary><div class="a" data-i18n="fq9-a">No. Since v0.0.8 all commands are open. AUTH is optional identity — used only so <code>APPLOG</code> and log lines show your app instead of a guest.</div></details>
+
+    <h3 id="codes"><span class="anchor">03</span><span data-i18n="err-t">Error codes</span></h3>
+    <p class="dlead" data-i18n="err-lead">Four families: 0x0 success · 0x1 errors · 0x2 status · 0x3 warnings. 54 codes total; these are the ones you will actually meet.</p>
+    <table class="tbl">
+      <thead><tr><th data-i18n="err-h-c">Code</th><th data-i18n="err-h-m">Meaning</th><th data-i18n="err-h-f">First aid</th></tr></thead>
+      <tbody>
+        <tr><td class="code amber">0x00000</td><td data-i18n="e1">Operation successful</td><td data-i18n="ea1">Nothing to do</td></tr>
+        <tr><td class="code amber">0x00001</td><td data-i18n="e2">App registration successful</td><td data-i18n="ea1">Nothing to do</td></tr>
+        <tr><td class="code">0x10001</td><td data-i18n="e3">Unsupported command</td><td data-i18n="ea3">Check spelling / HELP</td></tr>
+        <tr><td class="code">0x10003</td><td data-i18n="e4">Invalid signature</td><td data-i18n="ea4">Verify signature for writes</td></tr>
+        <tr><td class="code">0x10005</td><td data-i18n="e5">Registration failed</td><td data-i18n="ea5">Check payload format</td></tr>
+        <tr><td class="code">0x10008</td><td data-i18n="e6">Invalid parameters</td><td data-i18n="ea6">Check args per command</td></tr>
+        <tr><td class="code">0x10010</td><td data-i18n="e7">Permission denied</td><td data-i18n="ea7">Needs elevation (-elevate)</td></tr>
+        <tr><td class="code">0x10011</td><td data-i18n="e8">DLL not found</td><td data-i18n="ea8">Place ppc_ui.dll beside exe</td></tr>
+        <tr><td class="code">0x10012</td><td data-i18n="e9">DLL load failed</td><td data-i18n="ea9">Check arch pairing</td></tr>
+        <tr><td class="code">0x10015</td><td data-i18n="e10">Connection failed</td><td data-i18n="ea10">Is the server up? PING</td></tr>
+        <tr><td class="code">0x10017</td><td data-i18n="e11">PPC server not running</td><td data-i18n="ea11">Start ppc / check port</td></tr>
+        <tr><td class="code">0x10018</td><td data-i18n="e12">Authentication failed</td><td data-i18n="ea12">AUTH is optional — check hash</td></tr>
+        <tr><td class="code">0x10019</td><td data-i18n="e13">Version unsupported</td><td data-i18n="ea13">Upgrade client or server</td></tr>
+        <tr><td class="code">0x10027</td><td data-i18n="e14">Administrator required</td><td data-i18n="ea14">Relaunch elevated</td></tr>
+        <tr><td class="code">0x10029</td><td data-i18n="e15">Single-instance violation</td><td data-i18n="ea15">-stop first, then start</td></tr>
+        <tr><td class="code">0x10031</td><td data-i18n="e16">Log write failed</td><td data-i18n="ea16">Check disk / permissions</td></tr>
+        <tr><td class="code">0x30000</td><td data-i18n="e17">Deprecated command</td><td data-i18n="ea17">Use the modern command</td></tr>
+      </tbody>
+    </table>
+    <div class="callout cy"><span class="ic">i</span><span data-i18n="err-note">The full 54-code reference ships with the source (error_number.md) and grows with each release.</span></div>
+
+    <h3 id="scenarios"><span class="anchor">04</span><span data-i18n="sc-t">Troubleshooting</span></h3>
+    <p class="dlead" data-i18n="sc-lead">Four scenarios cover most real-world failures.</p>
+    <div class="scn">
+      <div class="card"><h4 data-i18n="sc1-t">A · Won't start</h4><ol>
+        <li data-i18n="sc1-1">Look in the tray — it may already be running (single instance).</li>
+        <li data-i18n="sc1-2"><code>ppc -stop</code>, then <code>ppc -t</code> to watch startup output.</li>
+        <li data-i18n="sc1-3">If another PPC architecture holds the port, -stop clears it.</li>
+        <li data-i18n="sc1-4">Still failing → collect terminal output and email it.</li>
+      </ol></div>
+      <div class="card"><h4 data-i18n="sc2-t">B · Connection refused</h4><ol>
+        <li data-i18n="sc2-1"><code>ppc PING</code> — expect PONG.</li>
+        <li data-i18n="sc2-2"><code>ppc -healthy</code> — full health check.</li>
+        <li data-i18n="sc2-3"><code>ppc -log 100</code> — look for bind errors or a custom PPC_PORT.</li>
+      </ol></div>
+      <div class="card"><h4 data-i18n="sc3-t">C · Popups degraded</h4><ol>
+        <li data-i18n="sc3-1">Confirm ppc_ui.dll sits beside the exe, matching its architecture.</li>
+        <li data-i18n="sc3-2"><code>ppc -log 100</code> — a load-failure line names the exact reason.</li>
+      </ol></div>
+      <div class="card"><h4 data-i18n="sc4-t">D · Version mismatch (0x10019)</h4><ol>
+        <li data-i18n="sc4-1"><code>ppc PPCVERSION</code> — read the server version.</li>
+        <li data-i18n="sc4-2">Compare with your connector's supported range.</li>
+        <li data-i18n="sc4-3">Upgrade whichever side is behind.</li>
+      </ol></div>
+    </div>
+
+    <h3 id="tree"><span class="anchor">05</span><span data-i18n="tr-t">Decision tree</span></h3>
+    <div class="tree">problem<br>├─ PPC starts? ─ no → <span data-i18n="tr-1">UAC? port? → scenario A → email</span><br>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ yes ↓<br>├─ PING → PONG? ─ no → -healthy → -log 100 → <span data-i18n="tr-2">scenario B</span><br>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ yes ↓<br>├─ error code? ─ yes → <span class="ok" data-i18n="tr-3">§ error table</span><br>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ UNKNOWN_COMMAND → HELP<br>└─ odd but silent? → ECHO + STATUS + LOG → <span data-i18n="tr-4">email with the full set</span></div>
+
+    <h3 id="versions"><span class="anchor">06</span><span data-i18n="vp-t">Versions</span></h3>
+    <p class="dlead" data-i18n="vp-lead">Current stable: v0.1.0 (2026-10-01).</p>
+    <p data-i18n="vp-1"><b>Compatibility:</b> apps written for v0.0.8+ run unmodified on v0.1.0 — the command interface stays backward-compatible.</p>
+    <p data-i18n="vp-2"><b>Upgrading:</b> portable — replace the files; MSI — rerun the installer. Your app database and logs carry over.</p>
+    <p data-i18n="vp-3"><b>History:</b> v0.0.6 → v0.0.7 → v0.0.8 → v0.0.9 → v0.1.0 — full timeline on the <a href="../index.html#versions">home page</a>.</p>
+
+    <h3 id="license"><span class="anchor">07</span><span data-i18n="li-t">License</span></h3>
+    <p data-i18n="li-1"><b>GPL-3.0</b> — free for open-source use; derivative works must be fully open-sourced.</p>
+    <p data-i18n="li-2"><b>Commercial</b> — closed-source integration requires a purchased license; contact Yuanyuan5510.</p>
+    <p data-i18n="li-3">Personal internal use with zero distribution: free under GPL-3.0 terms.</p>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" stroke="#ffb454" stroke-width="1.5" fill="rgba(255,180,84,0.12)"></polygon><polygon points="12,7 16.5,9.5 16.5,14.5 12,17 7.5,14.5 7.5,9.5" fill="#4dd0e1"></polygon></svg>
+          PPC
+        </div>
+        <p class="fabout" data-i18n="ft-about">Central Processing System for Windows apps. Written in Rust by wang.station.</p>
+      </div>
+      <div><h5 data-i18n="ft-prod">Product</h5><span>PPC v0.1.0</span><span data-i18n="ft-app">APP_TOP client</span></div>
+      <div><h5 data-i18n="ft-doc">Docs</h5><a href="../docs/index.html" data-i18n="ft-help">Help</a><a href="#" data-i18n="ft-sup">Support</a><a href="#codes" data-i18n="ft-err">Error codes</a></div>
+      <div><h5 data-i18n="ft-comm">Community</h5><a href="https://github.com/Practice-Plan/Practice-Plan/releases" target="_blank" rel="noopener">GitHub</a><a href="mailto:wang.station@hotmail.com">wang.station@hotmail.com</a></div>
+      <div><h5 data-i18n="ft-lic">License</h5><span>GPL-3.0</span><span data-i18n="ft-com">Commercial</span></div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 wang.station</span>
+      <span data-i18n="ft-dual">Dual-licensed: GPL-3.0 or Commercial</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.PPC_TITLE = {
+  en:'PPC — Support', zh:'PPC — 支持', fr:'PPC — Assistance',
+  ru:'PPC — Поддержка', ar:'PPC — الدعم'
+};
+window.PPC_I18N = {
+en:{'copy-btn':'Copy template','copy-ok':'✓ Copied'},
+zh:{
+  'nav-features':'能力','nav-download':'下载','nav-docs':'文档','nav-sup':'支持',
+  'st-title':'支持','st-lead':'90% 的问题几分钟自助解决——剩下的按模板发给我们，一次到位。',
+  'toc-on':'本页内容',
+  'ct-t':'联系与模板','ct-lead':'一封邮件、五项齐全——就是一份好报告。',
+  'ct-mail':'邮箱：wang.station@hotmail.com','ct-need':'附上这五项——缺项会来回追问：',
+  'copy-btn':'复制模板','copy-ok':'✓ 已复制',
+  'faq-t':'常见问题',
+  'fq-g1':'启动','fq1-q':'双击 exe 没有窗口？','fq1-a':'那是托盘模式——默认行为。看系统托盘区（可能折叠在 ^ 里）。要控制台用 ppc -t。',
+  'fq2-q':'UAC 弹窗每次都出现？','fq2-a':'v0.1.0 设计为启动即请求提权。调试期用 ppc -t 或 ppc -no-elevate。',
+  'fq3-q':'提示"端口被占用/另一实例在运行"？','fq3-a':'ppc 与 ppc32 共享 9527 且互斥——设计行为。先 ppc -stop，再启动你要的架构。',
+  'fq4-q':'关掉终端会杀掉 PPC 吗？','fq4-a':'不会。全局控制台处理器保证后台实例存活（v0.1.0+）。',
+  'fq-g2':'连接','fq5-q':'应用连不上 127.0.0.1:9527（0x10017）？','fq5-a':'确认 PPC 在运行（托盘图标 / ppc PING）、客户端端口与 PPC_PORT 一致、用 127.0.0.1 而非代理别名。',
+  'fq6-q':'命令返回 UNKNOWN_COMMAND？','fq6-a':'先查拼写，再对照 HELP。过旧的 PPC 版本没有新命令——升级到 v0.1.0。',
+  'fq-g3':'界面与 DLL','fq7-q':'弹窗样式变了 / 0x10011、0x10012？','fq7-a':'原生 UI 需要 exe 旁配对架构的 ppc_ui.dll。缺失或不匹配时 PPC 静默回退内置 Win32 桩。修好配对并重启。',
+  'fq-g4':'注册','fq8-q':'REGISTER_APP 返回 0x10005（失败）？','fq8-a':'检查载荷格式——单行 app_id|version|exe_path 竖线分隔——以及签名对该构建有效。',
+  'fq9-q':'还需要 AUTH 吗？','fq9-a':'不需要。v0.0.8 起全部命令开放。AUTH 是可选身份——仅让 APPLOG 和日志显示你的应用而非 guest。',
+  'err-t':'错误码','err-lead':'四个家族：0x0 成功 · 0x1 错误 · 0x2 状态 · 0x3 警告，共 54 个。下面是你真正会遇到的。',
+  'err-h-c':'错误码','err-h-m':'含义','err-h-f':'急救',
+  'e1':'操作成功','e2':'应用注册成功','e3':'不支持的命令','e4':'签名无效','e5':'注册失败','e6':'参数无效','e7':'权限拒绝',
+  'e8':'DLL 未找到','e9':'DLL 加载失败','e10':'连接失败','e11':'PPC 服务未运行','e12':'认证失败','e13':'版本不支持',
+  'e14':'需要管理员','e15':'单实例冲突','e16':'日志写入失败','e17':'命令已废弃',
+  'ea1':'无需处理','ea3':'查拼写 / HELP','ea4':'写操作需有效签名','ea5':'检查载荷格式','ea6':'按命令核对参数','ea7':'需提权（-elevate）',
+  'ea8':'ppc_ui.dll 放 exe 旁','ea9':'检查架构配对','ea10':'服务起了吗？PING','ea11':'启动 ppc / 查端口','ea12':'AUTH 可选——查哈希',
+  'ea13':'升级客户端或服务端','ea14':'提权后重启','ea15':'先 -stop 再启动','ea16':'查磁盘 / 权限','ea17':'改用新命令',
+  'err-note':'完整 54 码参考随源码发布（error_number.md），随版本更新扩充。',
+  'sc-t':'故障排查','sc-lead':'四个场景覆盖绝大多数真实故障。',
+  'sc1-t':'A · 无法启动','sc1-1':'看托盘——可能已在运行（单实例）。','sc1-2':'ppc -stop，然后 ppc -t 观察启动输出。',
+  'sc1-3':'若另一架构的 PPC 占着端口，-stop 清掉。','sc1-4':'仍失败 → 收集终端输出发邮件。',
+  'sc2-t':'B · 连接被拒','sc2-1':'ppc PING——应返回 PONG。','sc2-2':'ppc -healthy——完整健康检查。','sc2-3':'ppc -log 100——找绑定错误或自定义 PPC_PORT。',
+  'sc3-t':'C · 弹窗降级','sc3-1':'确认 ppc_ui.dll 在 exe 旁且架构配对。','sc3-2':'ppc -log 100——加载失败行会给出确切原因。',
+  'sc4-t':'D · 版本不匹配（0x10019）','sc4-1':'ppc PPCVERSION——读服务端版本。','sc4-2':'对照连接器支持范围。','sc4-3':'升级落后的一侧。',
+  'tr-t':'排查决策树',
+  'tr-1':'UAC？端口？→ 场景 A → 邮件','tr-2':'场景 B','tr-3':'§ 错误码表','tr-4':'带全套结果发邮件',
+  'vp-t':'版本政策','vp-lead':'当前稳定版：v0.1.0（2026-10-01）。',
+  'vp-1':'兼容性：v0.0.8+ 的应用在 v0.1.0 上零修改运行——命令接口保持向后兼容。',
+  'vp-2':'升级：便携版直接替换文件；MSI 重跑安装器。应用数据库与日志平滑迁移。',
+  'vp-3':'历史：v0.0.6 → v0.0.7 → v0.0.8 → v0.0.9 → v0.1.0——完整时间轴见<a href="../index.html#versions">主页</a>。',
+  'li-t':'许可','li-1':'GPL-3.0——开源免费；衍生作品须整体开源。','li-2':'商业许可——闭源集成需购买授权，联系 Yuanyuan5510。',
+  'li-3':'个人内部使用零分发：免费，适用 GPL-3.0 条款。',
+  'ft-about':'面向 Windows 应用的中央处理系统。Rust 实现，作者 wang.station。','ft-prod':'产品','ft-app':'APP_TOP 客户端',
+  'ft-doc':'文档','ft-help':'帮助','ft-sup':'支持','ft-err':'错误码','ft-comm':'社区','ft-lic':'许可','ft-com':'商业授权',
+  'ft-dual':'双许可：GPL-3.0 或商业授权'
+},
+ru:{
+  'nav-features':'Возможности','nav-download':'Скачать','nav-docs':'Документация','nav-sup':'Поддержка',
+  'st-title':'Поддержка','st-lead':'90% проблем решаются самостоятельно за минуты — остальное присылайте по шаблону.',
+  'toc-on':'На этой странице',
+  'ct-t':'Контакты и шаблон','ct-lead':'Одно письмо со всем необходимым — это хороший отчёт.',
+  'ct-mail':'Почта: wang.station@hotmail.com','ct-need':'Приложите пять пунктов — без них начнётся переписка:',
+  'copy-btn':'Скопировать шаблон','copy-ok':'✓ Скопировано',
+  'faq-t':'Частые вопросы',
+  'fq-g1':'Запуск','fq1-q':'Двойной клик — и нет окна?','fq1-a':'Это режим трея, он по умолчанию. Загляните в трей (может быть за ^). Консоль: ppc -t.',
+  'fq2-q':'UAC появляется каждый раз?','fq2-a':'Так задумано в v0.1.0. Для отладки — ppc -t или ppc -no-elevate.',
+  'fq3-q':'«Порт занят / уже запущен другой экземпляр»?','fq3-a':'ppc и ppc32 делят 9527 и взаимоисключаются — так и должно быть. Сначала ppc -stop.',
+  'fq4-q':'Закрытие терминала убивает PPC?','fq4-a':'Нет. Обработчик сигналов сохраняет фоновый процесс (v0.1.0+).',
+  'fq-g2':'Соединение','fq5-q':'Нет связи с 127.0.0.1:9527 (0x10017)?','fq5-a':'Проверьте, что PPC запущен (трей / PING), порт совпадает с PPC_PORT, подключение идёт на 127.0.0.1.',
+  'fq6-q':'Отвечает UNKNOWN_COMMAND?','fq6-a':'Проверьте написание и HELP. Старые версии не знают новых команд — обновитесь до v0.1.0.',
+  'fq-g3':'UI и DLL','fq7-q':'Всплывающие окна изменились / 0x10011, 0x10012?','fq7-a':'Нативному UI нужна ppc_ui.dll рядом с exe той же архитектуры. При несовпадении PPC молча переходит на встроенную замену.',
+  'fq-g4':'Регистрация','fq8-q':'REGISTER_APP возвращает 0x10005?','fq8-a':'Проверьте формат (app_id|version|exe_path одной строкой) и подпись.',
+  'fq9-q':'Нужен ли AUTH?','fq9-a':'Нет. С v0.0.8 все команды открыты. AUTH — необязательная идентификация для логов.',
+  'err-t':'Коды ошибок','err-lead':'Четыре семейства: 0x0 успех · 0x1 ошибки · 0x2 статус · 0x3 предупреждения, всего 54. Встречаются эти:',
+  'err-h-c':'Код','err-h-m':'Значение','err-h-f':'Первая помощь',
+  'e1':'Успех','e2':'Регистрация успешна','e3':'Команда не поддерживается','e4':'Подпись недействительна','e5':'Регистрация не удалась','e6':'Неверные параметры','e7':'Доступ запрещён',
+  'e8':'DLL не найдена','e9':'DLL не загрузилась','e10':'Сбой соединения','e11':'Сервер не запущен','e12':'Ошибка аутентификации','e13':'Версия не поддерживается',
+  'e14':'Нужны права администратора','e15':'Нарушение единственности','e16':'Ошибка записи лога','e17':'Команда устарела',
+  'ea1':'Действий не требуется','ea3':'Проверьте написание / HELP','ea4':'Для записи нужна подпись','ea5':'Проверьте формат','ea6':'Проверьте аргументы','ea7':'Нужно повышение (-elevate)',
+  'ea8':'Положите ppc_ui.dll рядом','ea9':'Проверьте парность архитектур','ea10':'Сервер жив? PING','ea11':'Запустите ppc / порт','ea12':'AUTH необязателен — проверьте хэш',
+  'ea13':'Обновите клиент или сервер','ea14':'Перезапуск с повышением','ea15':'Сначала -stop','ea16':'Диск / права','ea17':'Перейдите на новую команду',
+  'err-note':'Полный справочник из 54 кодов идёт с исходниками (error_number.md) и пополняется.',
+  'sc-t':'Устранение неполадок','sc-lead':'Четыре сценария покрывают большинство сбоев.',
+  'sc1-t':'A · Не запускается','sc1-1':'Посмотрите в трей — возможно, уже работает.','sc1-2':'ppc -stop, затем ppc -t и смотрите вывод.',
+  'sc1-3':'Если порт держит другая архитектура — -stop освободит.','sc1-4':'Не помогло → вывод в письме.',
+  'sc2-t':'B · Отказ соединения','sc2-1':'ppc PING — ждём PONG.','sc2-2':'ppc -healthy — полная проверка.','sc2-3':'ppc -log 100 — ищите ошибки бинда.',
+  'sc3-t':'C · Окна деградировали','sc3-1':'Проверьте ppc_ui.dll рядом с exe.','sc3-2':'ppc -log 100 назовёт причину.',
+  'sc4-t':'D · Несовпадение версий (0x10019)','sc4-1':'ppc PPCVERSION.','sc4-2':'Сверьте с поддержкой коннектора.','sc4-3':'Обновите отстающую сторону.',
+  'tr-t':'Дерево решений',
+  'tr-1':'UAC? порт? → сценарий A → письмо','tr-2':'сценарий B','tr-3':'§ таблица кодов','tr-4':'письмо со всем набором',
+  'vp-t':'Версии','vp-lead':'Актуальный стабильный релиз: v0.1.0 (2026-10-01).',
+  'vp-1':'Совместимость: приложения для v0.0.8+ работают на v0.1.0 без изменений.','vp-2':'Обновление: portable — заменой файлов; MSI — повторным запуском.',
+  'vp-3':'История: v0.0.6 → v0.1.0 — вся лента на <a href="../index.html#versions">главной</a>.',
+  'li-t':'Лицензия','li-1':'GPL-3.0 — бесплатно для open-source; производные открываются целиком.','li-2':'Коммерческая — для закрытых интеграций, свяжитесь с Yuanyuan5510.',
+  'li-3':'Личное внутреннее использование без распространения — бесплатно по GPL-3.0.',
+  'ft-about':'Центральная система обработки для Windows-приложений. Rust, автор wang.station.','ft-prod':'Продукт','ft-app':'Клиент APP_TOP',
+  'ft-doc':'Документация','ft-help':'Справка','ft-sup':'Поддержка','ft-err':'Коды ошибок','ft-comm':'Сообщество','ft-lic':'Лицензия','ft-com':'Коммерческая',
+  'ft-dual':'Двойная лицензия: GPL-3.0 или коммерческая'
+},
+fr:{
+  'nav-features':'Fonctionnalités','nav-download':'Télécharger','nav-docs':'Documentation','nav-sup':'Assistance',
+  'st-title':'Assistance','st-lead':'Résolvez vous-même 90 % des problèmes en quelques minutes ; pour le reste, envoyez-nous tous les éléments utiles.',
+  'toc-on':'Sur cette page','ct-t':'Contact et modèle','faq-t':'FAQ','err-t':'Codes d’erreur','sc-t':'Dépannage','tr-t':'Arbre de décision','vp-t':'Versions','li-t':'Licence',
+  'ct-lead':'Un seul e-mail contenant toutes les informations : voilà un bon signalement.',
+  'ct-mail':'E-mail : wang.station@hotmail.com','ct-need':'Joignez ces cinq éléments pour éviter les échanges inutiles :',
+  'copy-btn':'Copier le modèle','copy-ok':'✓ Copié','fq-g1':'Démarrage','fq-g2':'Connexion','fq-g3':'Interface et DLL','fq-g4':'Enregistrement',
+  'fq1-q':'Un double-clic sur le fichier ne montre aucune fenêtre ?','fq1-a':'C’est le mode barre système, activé par défaut. Vérifiez la zone de notification. Utilisez ppc -t pour ouvrir la console.',
+  'fq2-q':'La demande UAC apparaît à chaque fois ?','fq2-a':'C’est le comportement prévu dans v0.1.0. Pour le débogage, utilisez ppc -t ou ppc -no-elevate.',
+  'fq3-q':'« Port déjà utilisé / une autre instance est en cours » ?','fq3-a':'ppc et ppc32 partagent le port 9527 et sont mutuellement exclusifs. Exécutez ppc -stop avant de relancer.',
+  'fq4-q':'Fermer le terminal arrête-t-il PPC ?','fq4-a':'Non. Un gestionnaire global maintient le processus en arrière-plan (v0.1.0 et versions ultérieures).',
+  'fq5-q':'Mon application ne se connecte pas à 127.0.0.1:9527 (0x10017) ?','fq5-a':'Vérifiez que PPC fonctionne, que le port PPC_PORT est correct et que le client se connecte directement à 127.0.0.1.',
+  'fq6-q':'Les commandes répondent UNKNOWN_COMMAND ?','fq6-a':'Vérifiez l’orthographe et la commande HELP. Les anciennes versions ne connaissent pas les nouvelles commandes : passez à v0.1.0.',
+  'fq7-q':'Les fenêtres ont changé / erreur 0x10011 ou 0x10012 ?','fq7-a':'ppc_ui.dll doit se trouver à côté de l’exécutable et correspondre à son architecture. Vérifiez les fichiers, puis redémarrez.',
+  'fq8-q':'REGISTER_APP renvoie 0x10005 ?','fq8-a':'Vérifiez le format app_id|version|exe_path sur une seule ligne, séparé par |, ainsi que la validité de la signature.',
+  'fq9-q':'AUTH est-il encore nécessaire ?','fq9-a':'Non. Depuis v0.0.8, toutes les commandes sont ouvertes. AUTH est une identité facultative utilisée dans les journaux.',
+  'err-lead':'Quatre familles : 0x0 succès · 0x1 erreurs · 0x2 état · 0x3 avertissements. 54 codes au total ; voici les plus courants.',
+  'err-h-c':'Code','err-h-m':'Signification','err-h-f':'Première vérification',
+  'e1':'Opération réussie','e2':'Enregistrement de l’application réussi','e3':'Commande non prise en charge','e4':'Signature invalide','e5':'Échec de l’enregistrement','e6':'Paramètres invalides','e7':'Accès refusé',
+  'e8':'DLL introuvable','e9':'Échec du chargement de la DLL','e10':'Échec de connexion','e11':'Serveur arrêté','e12':'Échec d’authentification','e13':'Version non prise en charge',
+  'e14':'Droits administrateur requis','e15':'Conflit d’instance unique','e16':'Échec d’écriture du journal','e17':'Commande obsolète',
+  'ea1':'Aucune action nécessaire','ea3':'Vérifiez l’orthographe / HELP','ea4':'Une signature est requise pour écrire','ea5':'Vérifiez le format','ea6':'Vérifiez les arguments','ea7':'Élévation requise (-elevate)',
+  'ea8':'Placez ppc_ui.dll à côté de l’exécutable','ea9':'Vérifiez la correspondance des architectures','ea10':'Serveur actif ? Essayez PING','ea11':'Lancez ppc / vérifiez le port','ea12':'AUTH est facultatif — vérifiez le hachage',
+  'ea13':'Mettez à jour le client ou le serveur','ea14':'Relancez avec élévation','ea15':'Exécutez d’abord -stop','ea16':'Vérifiez le disque et les droits','ea17':'Utilisez la nouvelle commande',
+  'err-note':'La référence complète des 54 codes accompagne le code source (error_number.md) et évolue avec les versions.',
+  'sc-lead':'Quatre scénarios couvrent la plupart des problèmes.',
+  'sc1-t':'A · Ne démarre pas','sc1-1':'Vérifiez la barre système : PPC est peut-être déjà actif.','sc1-2':'Exécutez -stop puis -t pour voir les messages de démarrage.',
+  'sc1-3':'Si une autre architecture occupe le port, -stop le libère.','sc1-4':'Si le problème persiste, envoyez les messages par e-mail.',
+  'sc2-t':'B · Connexion refusée','sc2-1':'ppc PING doit répondre PONG.','sc2-2':'Exécutez -healthy pour un contrôle complet.','sc2-3':'Utilisez -log 100 et recherchez les erreurs de liaison.',
+  'sc3-t':'C · Fenêtres dégradées','sc3-1':'Vérifiez la présence et l’architecture de ppc_ui.dll.','sc3-2':'-log 100 indique la cause de l’échec.',
+  'sc4-t':'D · Versions incompatibles (0x10019)','sc4-1':'Vérifiez avec PPCVERSION.','sc4-2':'Comparez avec les versions prises en charge.','sc4-3':'Mettez à jour le composant le plus ancien.',
+  'tr-1':'UAC ? port ? → scénario A → e-mail','tr-2':'scénario B','tr-3':'§ tableau des codes','tr-4':'envoyez tous les éléments par e-mail',
+  'vp-lead':'Version stable actuelle : v0.1.0 (2026-10-01).',
+  'vp-1':'Compatibilité : les applications v0.0.8 et ultérieures fonctionnent sur v0.1.0 sans modification.',
+  'vp-2':'Mise à jour : remplacez les fichiers pour Portable ; relancez l’installateur MSI.',
+  'vp-3':'Historique : v0.0.6 → v0.1.0 — chronologie complète sur la page d’accueil.',
+  'li-1':'GPL-3.0 — les œuvres dérivées doivent rester ouvertes.','li-2':'Licence commerciale requise pour les intégrations propriétaires ; contactez Yuanyuan5510.',
+  'li-3':'L’utilisation personnelle interne sans redistribution est gratuite sous GPL-3.0.',
+  'ft-about':'Système central de traitement pour les applications Windows. Écrit en Rust par wang.station.',
+  'ft-prod':'Produit','ft-app':'Client APP_TOP','ft-doc':'Documentation','ft-help':'Aide','ft-sup':'Assistance','ft-err':'Codes d’erreur','ft-comm':'Communauté','ft-lic':'Licence','ft-com':'Commercial',
+  'ft-dual':'Double licence : GPL-3.0 ou commerciale'
+},
+ar:{
+  'nav-features':'الميزات','nav-download':'تنزيل','nav-docs':'التوثيق','nav-sup':'الدعم',
+  'st-title':'الدعم','st-lead':'حلّ ٩٠٪ من المشكلات بنفسك خلال دقائق، وأرسل الباقي إلينا مع كل المعلومات اللازمة.',
+  'toc-on':'في هذه الصفحة','ct-t':'التواصل والنموذج','faq-t':'الأسئلة الشائعة','err-t':'رموز الأخطاء','sc-t':'استكشاف الأخطاء','tr-t':'شجرة القرار','vp-t':'الإصدارات','li-t':'الترخيص',
+  'ct-lead':'رسالة واحدة تتضمن كل المعلومات؛ هذا بلاغ جيد.',
+  'ct-mail':'البريد الإلكتروني: wang.station@hotmail.com','ct-need':'أرفق العناصر الخمسة التالية لتجنب المراسلات المتكررة:',
+  'copy-btn':'نسخ النموذج','copy-ok':'✓ تم النسخ','fq-g1':'بدء التشغيل','fq-g2':'الاتصال','fq-g3':'الواجهة وDLL','fq-g4':'التسجيل',
+  'fq1-q':'هل لا تظهر نافذة بعد النقر مرتين على الملف؟','fq1-a':'هذا وضع شريط النظام الافتراضي. تحقق من منطقة الإعلام، واستخدم ppc -t لعرض وحدة التحكم.',
+  'fq2-q':'هل يظهر طلب UAC في كل مرة؟','fq2-a':'هذا مقصود في v0.1.0. للتصحيح استخدم ppc -t أو ppc -no-elevate.',
+  'fq3-q':'هل تظهر رسالة «المنفذ مستخدم / نسخة أخرى تعمل»؟','fq3-a':'يشترك ppc وppc32 في المنفذ 9527 ولا يعملان معاً. نفّذ ppc -stop قبل التشغيل مجدداً.',
+  'fq4-q':'هل يؤدي إغلاق الطرفية إلى إيقاف PPC؟','fq4-a':'لا. يحافظ معالج عام على العملية في الخلفية (v0.1.0 وما بعده).',
+  'fq5-q':'يتعذر على التطبيق الاتصال بـ 127.0.0.1:9527 (0x10017)؟','fq5-a':'تحقق من تشغيل PPC، وصحة المنفذ PPC_PORT، واتصال العميل مباشرةً بـ 127.0.0.1.',
+  'fq6-q':'هل ترد الأوامر UNKNOWN_COMMAND؟','fq6-a':'تحقق من الإملاء ومن HELP. لا تدعم الإصدارات القديمة الأوامر الجديدة؛ حدّث إلى v0.1.0.',
+  'fq7-q':'هل تغير شكل النوافذ / يظهر الخطأ 0x10011 أو 0x10012؟','fq7-a':'يجب وضع ppc_ui.dll بجوار الملف التنفيذي ومطابقة بنيته. تحقق من الملفات ثم أعد التشغيل.',
+  'fq8-q':'هل يعيد REGISTER_APP الرمز 0x10005؟','fq8-a':'تحقق من التنسيق app_id|version|exe_path في سطر واحد مفصول بعلامة | ومن صحة التوقيع.',
+  'fq9-q':'هل ما زلت بحاجة إلى AUTH؟','fq9-a':'لا. جميع الأوامر متاحة منذ v0.0.8. AUTH هوية اختيارية لإظهار التطبيق في السجلات.',
+  'err-lead':'أربع فئات: 0x0 نجاح · 0x1 أخطاء · 0x2 حالة · 0x3 تحذيرات. المجموع 54 رمزاً؛ إليك الأكثر شيوعاً.',
+  'err-h-c':'الرمز','err-h-m':'المعنى','err-h-f':'الإجراء الأول',
+  'e1':'نجحت العملية','e2':'نجح تسجيل التطبيق','e3':'الأمر غير مدعوم','e4':'التوقيع غير صالح','e5':'فشل التسجيل','e6':'معلمات غير صالحة','e7':'رُفض الإذن',
+  'e8':'لم يتم العثور على DLL','e9':'فشل تحميل DLL','e10':'فشل الاتصال','e11':'الخادم غير مشغّل','e12':'فشل المصادقة','e13':'الإصدار غير مدعوم',
+  'e14':'تلزم صلاحيات المسؤول','e15':'تعارض النسخة الواحدة','e16':'فشلت كتابة السجل','e17':'أمر قديم',
+  'ea1':'لا يلزم إجراء','ea3':'تحقق من الإملاء / HELP','ea4':'تلزم صلاحية توقيع للكتابة','ea5':'تحقق من التنسيق','ea6':'تحقق من الوسائط','ea7':'تلزم صلاحيات أعلى (-elevate)',
+  'ea8':'ضع ppc_ui.dll بجوار الملف التنفيذي','ea9':'تحقق من توافق البنية','ea10':'هل يعمل الخادم؟ جرّب PING','ea11':'شغّل ppc / تحقق من المنفذ','ea12':'AUTH اختياري — تحقق من التجزئة',
+  'ea13':'حدّث العميل أو الخادم','ea14':'أعد التشغيل بصلاحيات أعلى','ea15':'نفّذ -stop أولاً','ea16':'تحقق من القرص والأذونات','ea17':'استخدم الأمر الجديد',
+  'err-note':'يتضمن المصدر المرجع الكامل للرموز الـ54 في error_number.md، ويُحدّث مع الإصدارات.',
+  'sc-lead':'تغطي أربعة سيناريوهات معظم المشكلات.',
+  'sc1-t':'A · لا يبدأ','sc1-1':'تحقق من شريط النظام؛ فقد يكون التطبيق يعمل بالفعل.','sc1-2':'نفّذ -stop ثم -t لمشاهدة رسائل بدء التشغيل.',
+  'sc1-3':'إذا كانت بنية أخرى تشغل المنفذ، يحرره -stop.','sc1-4':'إذا استمرت المشكلة، أرسل المخرجات بالبريد.',
+  'sc2-t':'B · رُفض الاتصال','sc2-1':'يجب أن يعيد ppc PING الرد PONG.','sc2-2':'نفّذ -healthy لفحص كامل.','sc2-3':'استخدم -log 100 للبحث عن أخطاء ربط المنفذ.',
+  'sc3-t':'C · تدهور النوافذ','sc3-1':'تحقق من وجود ppc_ui.dll ومطابقة بنيتها.','sc3-2':'يعرض -log 100 سبب الفشل.',
+  'sc4-t':'D · اختلاف الإصدارات (0x10019)','sc4-1':'تحقق باستخدام PPCVERSION.','sc4-2':'قارن الإصدارات المدعومة.','sc4-3':'حدّث المكوّن الأقدم.',
+  'tr-1':'UAC؟ المنفذ؟ ← السيناريو A ← البريد','tr-2':'السيناريو B','tr-3':'§ جدول الرموز','tr-4':'أرسل جميع المعلومات بالبريد',
+  'vp-lead':'الإصدار المستقر الحالي: v0.1.0 (2026-10-01).',
+  'vp-1':'التوافق: تعمل تطبيقات v0.0.8 وما بعده على v0.1.0 دون تعديل.',
+  'vp-2':'التحديث: استبدل ملفات Portable أو أعد تشغيل مثبّت MSI.',
+  'vp-3':'السجل: v0.0.6 ← v0.1.0 — التسلسل الكامل في الصفحة الرئيسية.',
+  'li-1':'GPL-3.0 — يجب أن تبقى الأعمال المشتقة مفتوحة المصدر.','li-2':'يلزم ترخيص تجاري للتكاملات المغلقة؛ تواصل مع Yuanyuan5510.',
+  'li-3':'الاستخدام الداخلي الشخصي دون إعادة توزيع مجاني بموجب GPL-3.0.',
+  'ft-about':'نظام معالجة مركزي لتطبيقات Windows، مكتوب بلغة Rust بواسطة wang.station.',
+  'ft-prod':'المنتج','ft-app':'عميل APP_TOP','ft-doc':'التوثيق','ft-help':'مساعدة','ft-sup':'الدعم','ft-err':'رموز الأخطاء','ft-comm':'المجتمع','ft-lic':'الترخيص','ft-com':'تجاري',
+  'ft-dual':'ترخيص مزدوج: GPL-3.0 أو ترخيص تجاري'
+}
+};
+</script>
+<script src="../assets/app.js"></script>
+
+
+</body></html>
