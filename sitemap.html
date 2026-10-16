@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d16">
+  <meta name="description" content="Navigate the Practice Plan ecosystem: the main experience, PPC, documentation, support, and project resources.">
+  <title>Sitemap | Practice Plan</title>
+  <link rel="canonical" href="https://practice-plan.wangstation.dpdns.org/common/sitemap.html">
+  <link rel="alternate" type="application/xml" title="XML Sitemap" href="/common/sitemap.xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "DM Sans", "Noto Sans SC", "Noto Sans Arabic", sans-serif;
+      color: #e8edf5;
+      background: #080d16;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      --muted: #8995a7;
+      --line: rgba(199, 216, 238, .12);
+      --gold: #ffd58a;
+      --cyan: #75d8e6;
+    }
+
+    * { box-sizing: border-box; }
+    body { min-width: 320px; min-height: 100vh; margin: 0; }
+    a { color: inherit; }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: 28px clamp(22px, 6vw, 88px) 24px;
+      background:
+        radial-gradient(ellipse at 76% 5%, rgba(27, 75, 100, .26), transparent 34%),
+        radial-gradient(ellipse at 8% 70%, rgba(100, 62, 32, .14), transparent 34%),
+        #080d16;
+    }
+
+    .page::before {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(153, 181, 214, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(153, 181, 214, .035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      content: "";
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+
+    .topbar, main, footer { position: relative; z-index: 1; }
+    .topbar, .footer { display: flex; align-items: center; justify-content: space-between; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-family: "Manrope", sans-serif;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      border: 1px solid rgba(255, 213, 138, .48);
+      border-radius: 12px;
+      background: rgba(255, 213, 138, .08);
+      color: var(--gold);
+      font-size: .8rem;
+    }
+
+    .back-link {
+      color: #aab5c5;
+      font-size: .82rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .back-link:hover { color: var(--gold); }
+    .back-link:focus-visible, .site-link:focus-visible, .locale-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+
+    main { width: min(100%, 1040px); margin: 0 auto; padding: clamp(68px, 10vh, 112px) 0 82px; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 16px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      font-weight: 600;
+      letter-spacing: -.075em;
+      line-height: 1;
+    }
+
+    .intro { max-width: 570px; margin-bottom: 56px; color: #9aa6b7; font-size: 1.03rem; line-height: 1.75; }
+    .site-map { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+    .group {
+      position: relative;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .16);
+    }
+
+    .group.primary { grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; min-height: 365px; }
+    .group-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+    .group-index { color: #626f81; font: 500 .7rem/1 "DM Sans", sans-serif; letter-spacing: .15em; }
+    .group-icon { color: var(--cyan); font-size: 1.1rem; }
+    .group h2 { margin-bottom: 8px; color: #f1f4f9; font: 700 1.3rem/1.25 "Manrope", sans-serif; letter-spacing: -.035em; }
+    .group > p, .group-copy p { margin-bottom: 0; color: var(--muted); font-size: .86rem; line-height: 1.65; }
+
+    .site-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 52px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(199, 216, 238, .09);
+      text-decoration: none;
+      transition: color .2s ease, padding .2s ease;
+    }
+
+    .site-link:last-child { border-bottom: 0; }
+    .site-link:hover { padding-inline-start: 5px; color: var(--gold); }
+    .site-link strong { display: block; font-size: .92rem; font-weight: 600; }
+    .site-link small { display: block; margin-top: 3px; color: #7e8a9b; font-size: .76rem; }
+    .arrow { color: #78879a; font-size: 1.05rem; }
+    .primary .site-link-main { margin-top: 30px; }
+
+    .locale-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .locale-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 11px;
+      border: 1px solid rgba(117, 216, 230, .19);
+      border-radius: 999px;
+      color: #a9bdc8;
+      font-size: .72rem;
+      text-decoration: none;
+      transition: border-color .2s ease, color .2s ease, background .2s ease;
+    }
+
+    .locale-link:hover { border-color: rgba(117, 216, 230, .55); background: rgba(117, 216, 230, .07); color: #e5fbff; }
+
+    .footer {
+      width: min(100%, 1040px);
+      min-height: 40px;
+      margin: 0 auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: #748092;
+      font-size: .74rem;
+    }
+
+    .footer-links { display: flex; align-items: center; gap: 20px; }
+    .footer a { color: #a9b6c8; text-decoration: none; }
+    .footer a:hover { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      .page { padding: 20px 18px 18px; }
+      main { padding: 74px 0 60px; }
+      .intro { margin-bottom: 35px; }
+      .site-map { grid-template-columns: 1fr; }
+      .group.primary { grid-row: auto; min-height: 0; }
+      .group { padding: 21px; }
+      .footer { align-items: flex-start; gap: 14px; font-size: .68rem; }
+      .footer-links { align-items: flex-end; flex-direction: column; gap: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark" aria-hidden="true">PP</span>
+        <span>Practice Plan</span>
+      </a>
+      <a class="back-link" href="./index.html">Back to experience <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <p class="eyebrow">Practice Plan · Directory</p>
+      <h1>Explore the<br>ecosystem.</h1>
+      <p class="intro">A clear guide to the experiences, tools, and resources across Practice Plan. Choose a destination to continue.</p>
+
+      <nav class="site-map" aria-label="Website directory">
+        <section class="group primary" aria-labelledby="practice-title">
+          <div>
+            <div class="group-header"><span class="group-index">01 / EXPERIENCE</span><span class="group-icon" aria-hidden="true">✳</span></div>
+            <h2 id="practice-title">Practice Plan</h2>
+            <p>A multilingual, open-source practice ecosystem connecting the PPC command system, connectors, and desktop tools.</p>
+          </div>
+          <div>
+            <a class="site-link site-link-main" href="./index.html">
+              <span class="group-copy"><strong>Enter Practice Plan</strong><small>Explore the interactive three-scene journey</small></span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="site-link" href="mailto:wang.station@hotmail.com">
+              <span class="group-copy"><strong>Feedback &amp; contact</strong><small>Send a note directly by email</small></span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="group" aria-labelledby="ppc-title">
+          <div class="group-header"><span class="group-index">02 / WINDOWS SYSTEM</span><span class="group-icon" aria-hidden="true">⌘</span></div>
+          <h2 id="ppc-title">PPC</h2>
+          <p>One local core for Windows apps, with a TCP API at 127.0.0.1:9527.</p>
+          <a class="site-link" href="./ppc/index.html">
+            <span class="group-copy"><strong>Product overview</strong><small>Features, architecture, releases, and downloads</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="locale-list" aria-label="PPC language editions">
+            <a class="locale-link" href="./ppc/index.html?lang=en" lang="en">English</a>
+            <a class="locale-link" href="./ppc/index.html?lang=zh" lang="zh-CN">简体中文</a>
+            <a class="locale-link" href="./ppc/index.html?lang=fr" lang="fr">Français</a>
+            <a class="locale-link" href="./ppc/index.html?lang=ru" lang="ru">Русский</a>
+            <a class="locale-link" href="./ppc/index.html?lang=ar" lang="ar">العربية</a>
+          </div>
+        </section>
+
+        <section class="group" aria-labelledby="resources-title">
+          <div class="group-header"><span class="group-index">03 / RESOURCES</span><span class="group-icon" aria-hidden="true">↗</span></div>
+          <h2 id="resources-title">Documentation &amp; support</h2>
+          <a class="site-link" href="./ppc/docs/index.html">
+            <span class="group-copy"><strong>PPC documentation</strong><small>Installation, commands, integration, and diagnostics</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="site-link" href="./ppc/support/index.html">
+            <span class="group-copy"><strong>Help &amp; support</strong><small>FAQs, troubleshooting, and contact details</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="site-link" href="./LICENSE">
+            <span class="group-copy"><strong>License</strong><small>Project license and usage terms</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="site-link" href="https://github.com/Practice-Plan/Practice-Plan/releases" target="_blank" rel="noopener noreferrer">
+            <span class="group-copy"><strong>GitHub releases</strong><small>Source code and published builds</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </section>
+      </nav>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 Practice Plan · WangStation</span>
+      <span class="footer-links">
+        <a href="/common/sitemap.xml">XML sitemap</a>
+        <a href="mailto:wang.station@hotmail.com">Contact <span aria-hidden="true">↗</span></a>
+      </span>
+    </footer>
+  </div>
+</body>
+</html>

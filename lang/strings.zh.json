@@ -1,7 +1,7 @@
 {
   "lang": "zh",
   "dir": "ltr",
-  "nav": { "home": "首页", "about": "关于", "contact": "反馈", "reset": "重新体验" },
+  "nav": { "home": "首页", "about": "关于", "contact": "反馈", "reset": "重新体验", "sitemap": "网站地图" },
   "home": {
     "eyebrow": "Practice Plan",
     "title": "从命令到界面，构建完整实践生态",

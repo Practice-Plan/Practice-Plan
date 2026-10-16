@@ -1,7 +1,7 @@
 {
   "lang": "ar",
   "dir": "rtl",
-  "nav": { "home": "الرئيسية", "about": "حول", "contact": "ملاحظات", "reset": "إعادة" },
+  "nav": { "home": "الرئيسية", "about": "حول", "contact": "ملاحظات", "reset": "إعادة", "sitemap": "خريطة الموقع" },
   "home": {
     "eyebrow": "Practice Plan",
     "title": "من الأمر إلى الواجهة — منظومة ممارسة متكاملة",

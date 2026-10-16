@@ -1,7 +1,7 @@
 {
   "lang": "fr",
   "dir": "ltr",
-  "nav": { "home": "Accueil", "about": "À propos", "contact": "Avis", "reset": "Rejouer" },
+  "nav": { "home": "Accueil", "about": "À propos", "contact": "Avis", "reset": "Rejouer", "sitemap": "Plan du site" },
   "home": {
     "eyebrow": "Practice Plan",
     "title": "De la commande à l'interface — un écosystème de pratique complet",

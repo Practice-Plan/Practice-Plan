@@ -1,7 +1,7 @@
 {
   "lang": "en",
   "dir": "ltr",
-  "nav": { "home": "Home", "about": "About", "contact": "Feedback", "reset": "Replay" },
+  "nav": { "home": "Home", "about": "About", "contact": "Feedback", "reset": "Replay", "sitemap": "Sitemap" },
   "home": {
     "eyebrow": "Practice Plan",
     "title": "From command to interface — a complete practice ecosystem",

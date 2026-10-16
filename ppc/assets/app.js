@@ -18,6 +18,11 @@
     }
   }
 
+  function getRequestedLanguage() {
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    return languages.includes(requested) ? requested : null;
+  }
+
   function detectLanguage() {
     for (const candidate of navigator.languages || [navigator.language || 'en']) {
       const language = candidate.toLowerCase().split('-')[0];
@@ -80,11 +85,24 @@
       } catch {
         // Translation still applies for this visit when storage is unavailable.
       }
+      if (getRequestedLanguage()) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('lang');
+        window.history.replaceState(null, '', url);
+      }
       applyLanguage(language);
     });
   });
 
-  applyLanguage(getSavedLanguage() || detectLanguage());
+  const requestedLanguage = getRequestedLanguage();
+  if (requestedLanguage) {
+    try {
+      localStorage.setItem('ppc-lang', requestedLanguage);
+    } catch {
+      // The requested language still applies for this visit when storage is unavailable.
+    }
+  }
+  applyLanguage(requestedLanguage || getSavedLanguage() || detectLanguage());
   window.addEventListener('languagechange', () => {
     if (!getSavedLanguage()) applyLanguage(detectLanguage());
   });

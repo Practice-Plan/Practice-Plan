@@ -139,6 +139,15 @@ body{
 }
 .scene-nav button:hover{color:#fff}
 .scene-nav button.on{color:#0a0a0f;background:var(--gold);box-shadow:0 0 22px rgba(255,213,138,.45)}
+.sitemap-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 13px;border:1px solid rgba(255,255,255,.12);border-radius:100px;
+  color:rgba(255,255,255,.62);font-size:11px;letter-spacing:.04em;text-decoration:none;
+  background:rgba(8,12,20,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:color .25s,border-color .25s,background .25s;
+}
+.sitemap-link:hover{color:#fff;border-color:rgba(255,213,138,.45);background:rgba(255,213,138,.08)}
+.sitemap-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .lang-switch{
   display:flex;align-items:center;gap:6px;
   padding:5px;border-radius:999px;
@@ -378,6 +387,7 @@ html[dir="rtl"] .scene-cta .arrow{margin-left:0;margin-right:10px}
   .topbar{padding:16px 18px}
   .brand{font-size:1.1rem}
   .scene-nav button{padding:8px 12px;font-size:11px;line-height:1.5}
+  .sitemap-link{padding:7px 10px;font-size:10px}
   .reset-btn{display:none}
   .level-dots{right:14px;gap:14px}
   html[dir="rtl"] .level-dots{right:auto;left:14px}
